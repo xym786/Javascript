@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //运行test()和new test()的结果
+        var a = 5;
+        function test() {
+            a = 0;
+            alert(a);
+            alert(this.a);
+            var a;
+            alert(a);
+        }
+        //test(); // 0 5 0
+        //new test(); // 0 un 0 通过new改变了this的指向
+
+        var x = 1, y = z = 0;
+        function add(n) {
+            return n = n + 1;
+        }
+        y = add(x);
+        function add(n) {
+            return n = n + 3;
+        }
+        z = add(x);
+        //console.log(x, y, z); // 1 4 4
+
+        function Person(name, age, sex) {
+            var a = 0;
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            function sss() {
+                a++;
+                document.write(a);
+            }
+            this.say = sss;
+        }
+        var oPerson = new Person();
+        //oPerson.say(); // 1
+        //oPerson.say(); // 2
+        var oPerson1 = new Person();
+        //oPerson1.say(); // 1
+        //oPerson和oPerson1是分别return出去的
+
+        //下面结果是[1, 2, 3, 4, 5]的有 A C
+        // A
+        function foo(x) {
+            console.log(arguments);
+            return x;
+        }
+        //foo(1, 2, 3, 4, 5);
+        // B
+        function foo(x) {
+            console.log(arguments);
+            return x;
+        }(1, 2, 3, 4, 5); //不报错 不执行
+        // C
+        (function foo(x) {
+            //console.log(arguments);
+            return x;
+        })(1, 2, 3, 4, 5);
+        // D
+        function foo() {
+            bar.apply(null, arguments);
+        }
+        function bar(x) {
+            console.log(arguments);
+        }
+        //foo(1, 2, 3, 4, 5);
+    </script>
+</body>
+
+</html>

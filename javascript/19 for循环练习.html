@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+</head>
+<body>
+<script>
+    /*
+    for(var i = 0; i < 5; i++) {
+        for(var j = 0; j < i + 1; j++) {
+            document.write('*');
+        }
+        //在html中换行 需要输入 <br /> 标签
+        document.write('<br />');
+    }
+    */
+    
+    /*
+    for(var i = 0; i < 5; i++) {
+        for(var j = 0; j < 5 - i; j++) {
+            document.write('*');
+        }
+        document.write('<br />');
+    }
+    */
+
+    /*
+       *
+      ***
+     *****
+    *******
+     *****
+      ***
+       *
+    */
+
+    /*
+    for(var i = 0; i < 5; i++) {
+        for(var j = 0; j < 4 - i; j++) {
+            document.write('-');
+        }
+        for(var k = 0; k < 2 * i + 1; k++) {
+            document.write('*');
+        }
+        document.write('<br />');
+    }
+    for(var i = 0; i < 4; i++) {
+        for(var j = 0; j < i + 1; j++) {
+            document.write('-');
+        }
+        for(var k = 0; k < 7 - 2 * i; k++) {
+            document.write('*');
+        }
+        document.write('<br />');
+    }
+    */
+
+    /*
+    //打印99数乘表
+    for(var i = 1; i <= 9; i++) {
+        for(var j = 1; j <= i; j++) {
+            document.write(j + '×' + i + '=' + (j * i) + '\t');
+        }
+        document.write('<br />')
+    }
+    */
+
+    /*
+    //输出1~100间的质数
+    outer:
+    for(var i = 2; i <= 100; i++) {
+        for(var j = 2; j < i; j++) {
+            if(i % j == 0) {
+                continue outer;
+            }
+        }
+        console.log(i);
+    } 
+    */
+
+    /*
+    //判断一个数是不是质数
+    while(true) {
+        var num = prompt('请输入一个数字:');
+        if(num > 0 || num < 0 || num === '0') {
+            break;
+        }
+        alert('输入有误!');
+    }
+    console.time('test');
+    var flag = true;
+    for(var i = 2; i < num; i++) {
+        if(num % i == 0) {
+            flag = false;
+        }
+    }
+    console.timeEnd('test');
+    if(flag) {
+        alert('是质数');
+    }else {
+        alert('非质数');
+    }
+    */
+
+    /*
+    //对上述代码可进行优化 优化循环中的条件表达式
+    while(true) {
+        var num = prompt('请输入一个数字:');
+        if(num > 0 || num < 0 || num === '0') {
+            break;
+        }
+        alert('输入有误!');
+    }
+    console.time('test');
+    var flag = true;
+    for(var i = 2; i <= Math.sqrt(num); i++) {
+        if(num % i == 0) {
+            flag = false;
+        }
+    }
+    console.timeEnd('test');
+    if(flag) {
+        alert('是质数');
+    }else {
+        alert('非质数');
+    }
+    */
+
+</script>
+</body>
+</html>

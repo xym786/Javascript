@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //对象的属性名不强制要求遵守标识符规范 什么名字都可以 但使用时 尽量按规范
+    var obj = new Object();
+    obj.var = 'hello';
+    console.log(obj.var);
+    /*
+    obj.123 = 789; 但这种情况会报错
+    使用特殊属性名时 不使用用 . 的方式 而采用 []
+    语法 对象['属性名'] = 属性值; 读取时同样采用这种方法
+    */
+    obj['123'] = 789;
+    console.log(obj['123']);
+    //使用 [] 操作时更加灵活 在 [] 中可传递变量 变量值时多少 就会传递哪个属性
+    var a = '123';
+    console.log(obj[a]);
+    //js中的属性值可以是任意数据类型 甚至可以是一个对象
+    var obj1 = new Object();
+    var obj2 = new Object();
+    obj1.name = 'su';
+    obj2.test = obj1;
+    console.log(obj2);
+    console.log(obj2.test);
+    console.log(obj2.test.name);
+    /*
+    in运算符 检查一个对象中是否有指定属性
+    返回true → 有   返回false → 没有
+    */
+    console.log('name' in obj1);
+    console.log('height' in obj1);
+</script>
+</body>
+</html>

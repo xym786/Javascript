@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //对一个或多个值进行运算并获得结果
+    //1.加法
+    var a = 123;
+    var result = a + 1;
+    console.log(result); 
+    //当对非number值进行运算时 先将值转换为number再进行运算
+    result = true + false;  // true 1    false 0
+    console.log(result); 
+    result = 2 + null;  // null 0
+    console.log(result); 
+    result = 3 + NaN;   //任何值和NaN相加都等于NaN
+    console.log(result); 
+    //两个字符串进行加法 会拼接并返回
+    result = '123' + '456';
+    console.log(result); 
+    /*
+    任何值和String作加法 都会转换为String并拼接
+    可以利用这一特点 将任一数据转换为String 即加一个空串
+    此法为隐式转换 由浏览器完成 也是调用String()函数
+    */
+    result = 123 + '1';
+    console.log(result); 
+</script>
+<script>
+    //除了加法会拼串 其余的都是转化为number后再运算
+    var result1 = 100 - 1, result2 = 100 - '2';
+    console.log(result1, result2);
+
+    result1 = 1 * '8', result2 = 2 * undefined;
+    console.log(result1, result2);
+    //任何数- * /都自动转换为数字 可利用这一特点将一个值转换为数字
+</script>
+</body>
+</html>

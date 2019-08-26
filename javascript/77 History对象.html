@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        //History可以操作浏览器向前向后翻页
+        var getObj = function(objStr) {
+            var obj = document.getElementById(objStr);
+            return obj;
+        };
+
+        var btn1 = getObj('btn1');
+        btn1.onclick = function() {
+            //1.length属性可以获取到当前访问的链接数量
+            alert(history.length);
+        };
+
+        var btn2 = getObj('btn2');
+        btn2.onclick = function() {
+            //2.back可用来回退至上一个页面 作用和浏览器的回退键一样
+            history.back();
+        };
+
+        var btn3 = getObj('btn3');
+        btn3.onclick = function() {
+            //3.forward可以跳转到下一个页面 作用和浏览器的前进键一样
+            history.forward();
+        };
+
+        var btn4 = getObj('btn4');
+        btn4.onclick = function() {
+            /*
+            4.go()可以用来跳转到指定页面
+            需要一个整数作参数 n表示向后跳转n个页面 -n表示向前跳转n个页面
+            */
+            history.go(1);
+        };
+    };
+    </script>
+</head>
+<body>
+    <a href="77-2 test2.html">test2</a>
+    <button id="btn1">length</button>
+    <button id="btn2">back</button>
+    <button id="btn3">forward</button>
+    <button id="btn4">go</button>
+</body>
+</html>

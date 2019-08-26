@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    ul {
+        float: left;
+    }
+    li {
+        list-style: none;
+    }
+    button {
+        margin-left: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+    }
+    body>ul:first-child {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body>ul:first-child>li {
+        width: 25%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+
+    body>ul:nth-child(2) {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+    body>ul:nth-child(2)>li {
+        margin-top: 10px;
+        width: 25%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+    body>ul:nth-child(2)>li:nth-child(2) {
+        margin-bottom: 10px;
+        align-self: flex-end;
+    }
+
+    body>ul:nth-child(3) {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+    body>ul:nth-child(3)>li {
+        margin-top: 10px;
+        width: 25%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+    body>ul:nth-child(3)>li:nth-child(2) {
+        margin-top: -5px;
+        align-self: center;
+    }
+    body>ul:nth-child(3)>li:nth-child(3) {
+        margin-bottom: 10px;
+        align-self: flex-end;
+    }
+
+    body>ul:nth-child(4) {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+    }
+    body>ul:nth-child(4)>li {
+        flex: 1;
+    }
+    body>ul:nth-child(4) ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    body>ul:nth-child(4) ul li {
+        width: 50%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+
+    body>ul:nth-child(5) {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+    }
+    body>ul:nth-child(5)>li {
+        flex: 1;
+    }
+    body>ul:nth-child(5) ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    body>ul:nth-child(5) ul li {
+        width: 75%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+
+    body>ul:nth-child(6) {
+        margin: 10px;
+        width: 200px;
+        height: 200px;
+        border: 3px solid #333;
+        border-radius: 20px;
+        display: flex;
+    }
+    body>ul:nth-child(6)>li {
+        flex: 1;
+    }
+    body>ul:nth-child(6)>li ul {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    body>ul:nth-child(6) ul li {
+        width: 50%;
+        height: 25%;
+        background-color: #333;
+        border-radius: 50%;
+    }
+
+    body>ul {
+        top: 50px;
+        left: 0;
+        position: absolute;
+        visibility: hidden;
+    }
+    body>ul:first-child {
+        visibility: visible;
+    }
+    </style>
+
+    <script>
+    window.onload = function() {
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var ul = document.querySelectorAll('body>ul');
+        var index = 0;
+        var timer = 0;
+        btn1.onclick = function() {
+            clearInterval(timer);
+            timer = setInterval(function() {
+                index++;
+                if(index > ul.length - 1) {
+                    index = 0;
+                }
+                for(var i = 0; i < ul.length; i++) {
+                    ul[i].style.visibility = 'hidden';
+                    if(i == index) {
+                        ul[i].style.visibility = 'visible';
+                    }
+                }
+            }, 10);
+        };
+        btn2.onclick = function() {
+            clearInterval(timer);
+        };
+    };
+    </script>
+</head>
+<body>
+    <ul>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li></li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+        <li>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </li>
+    </ul>
+    
+    <button id="btn1">play</button>
+    <button id="btn2">stop</button>
+</body>
+</html>

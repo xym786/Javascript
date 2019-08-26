@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+    window.onload = function() {
+        /*
+        基本数据类型 1.String 2.Number 3.undefined 4.Null 
+        引用数据类型 5.Object 6.Function 7.Array
+
+        判断：1.typeof 返回string型
+        2.instanceof 表示某变量是否为某对象的实例(用于判断对象的具体类型)
+        3.==(有隐式转换) / ===
+        */
+
+        console.log(typeof null);
+        console.log(null instanceof Object);
+
+        /*
+        1.虽然null的类型是Object 但是他不具有任何对象的特征
+        也就是并不能执行null.toString()等对象实例的默认调用
+        所以null不是Object的实例 null没有原型
+        2.typeof 可判断 undefined / 数值 /字符串 / 布尔值
+        === 可判断null undefined
+        */
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

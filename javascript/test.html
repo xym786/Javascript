@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1,
+        #box2 {
+            top: 100px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: pink;
+        }
+
+        #box2 {
+            top: 300px;
+            background-color: purple;
+        }
+
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+            outline: none;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .line {
+            top: 0;
+            left: 800px;
+            width: 0;
+            height: 2000px;
+            position: absolute;
+            border-left: 1px solid #000;
+        }
+
+        #outer {
+            top: 300px;
+            left: 1000px;
+            width: 300px;
+            height: 260px;
+            padding: 10px;
+            position: absolute;
+            background-color: yellowgreen;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #imgList {
+            left: 0;
+            position: absolute;
+        }
+
+        #imgList li {
+            margin: 0 10px;
+            width: 300px;
+            height: 260px;
+            float: left;
+        }
+
+        #arch {
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%);
+            position: absolute;
+        }
+
+        #arch li {
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+            float: left;
+            background-color: rgba(153, 0, 255, 0.5);
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            //获取对象
+            function getObj(obj) {
+                return document.getElementById(obj);
+            }
+
+            var btn1 = getObj('btn1');
+            var btn2 = getObj('btn2');
+            var btn3 = getObj('btn3');
+            var btn4 = getObj('btn4');
+            var btn5 = getObj('btn5');
+            var box1 = getObj('box1');
+            var box2 = getObj('box2');
+            var imgList = getObj('imgList');
+
+            btn1.onclick = function () {
+                move(box1, 19, 800, 'left');
+            }
+            btn2.onclick = function () {
+                move(box1, 19, 0, 'left');
+            }
+            btn3.onclick = function () {
+                move(box2, 19, 800, 'left');
+            }
+            btn4.onclick = function () {
+                move(box2, 19, 0, 'left');
+            }
+            btn5.onclick = function () {
+                move(box2, 19, 800, 'left', function () {
+                    move(box2, 19, 0, 'left', function () {
+                        move(box2, 10, 300, 'width', function () {
+                            move(box2, 10, 300, 'height', function () {
+                                move(box2, 10, 0, 'top');
+                            })
+                        });
+                    });
+                });
+            }
+
+            //获取元素样式
+            function getStyle(obj, name) {
+                return window.getComputedStyle ? getComputedStyle(obj, null)[name] : obj.currentStyle[name];
+            }
+
+            //定义move函数
+            function move(obj, speed, target, attr, callback) {
+                var current = parseInt(getStyle(obj, attr));
+                if (current > target) {
+                    speed = -speed;
+                }
+                clearInterval(obj.timer);
+                obj.timer = setInterval(function () {
+                    var oldValue = parseInt(getStyle(obj, attr));
+                    var newValue = oldValue + speed;
+                    if (newValue > target && speed > 0 || newValue < target && speed < 0) {
+                        newValue = target;
+                    }
+                    obj.style[attr] = newValue + 'px';
+                    if (newValue == target) {
+                        clearInterval(obj.timer);
+                        callback && callback();
+                    }
+                }, 30);
+            }
+
+            var lis = document.querySelectorAll('#imgList li');
+            var imgArr = ['images/1.jpg', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.jpg',
+                'images/1.jpg'
+            ];
+            var archs = document.querySelectorAll('#arch li');
+            imgList.style.width = 320 * lis.length + 'px';
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].style.background = 'url(' + imgArr[i] + ')';
+                lis[i].style.backgroundSize = 'cover';
+            }
+
+            var index = 0;
+            setA(0);
+            setInterval(function () {
+                index++;
+                setA(index);
+                if (index >= lis.length) {
+                    index = 0;
+                    imgList.style.left = 0;
+                }
+                move(imgList, 10, -320 * index, 'left');
+            }, 2000);
+
+            function setA(num) {
+                if (num > archs.length - 1) {
+                    num = 0;
+                }
+                for (var i = 0; i < archs.length; i++) {
+                    archs[i].style.backgroundColor = '';
+                }
+                archs[num].style.backgroundColor = 'rgba(0, 0, 0, .5)';
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn1">box1_left</button>
+    <button id="btn2">box1_right</button>
+    <button id="btn3">box2_left</button>
+    <button id="btn4">box2_right</button>
+    <button id="btn5">test</button>
+    <br /> <br />
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div class="line"></div>
+
+    <div id="outer">
+        <ul id="imgList">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul id="arch">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+
+</html>

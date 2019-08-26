@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        同时有数组和对象的特性
+        类数组的必要条件：
+        1.属性要为索引(数字属性)
+        2.必须有length属性
+        3.最好加上push
+        */
+        var obj1 = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            'length': 3,
+            'push': Array.prototype.push,
+            'splice': Array.prototype.splice
+            //加上此属性时 外观上和数组一致
+        };
+
+        /*
+        Array中的push应有的操作
+        Array.prototype.push = function(target) {
+            obj[obj.length] = target;
+            obj.length++;
+        }
+        */
+
+        // eg 参考Array中push的操作
+        var obj = {
+            '2': 'a',
+            '3': 'b',
+            'length': 2,
+            'push': Array.prototype.push
+        };
+        obj.push('c');
+        obj.push('d');
+        console.log(obj);
+    </script>
+</body>
+
+</html>

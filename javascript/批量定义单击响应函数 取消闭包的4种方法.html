@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border: 1px solid #ccc;
+        }
+
+        table td {
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            border: 1px solid #ccc;
+        }
+
+        img {
+            width: 300px;
+            height: 240px;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing='5'>
+        <tr>
+            <td class="blue"></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <img src="images/1.jpg" alt="">
+
+    <script>
+        // 法1:
+        // var tds = document.querySelectorAll('table td');
+        // var img = document.querySelectorAll('img')[0];
+        // for (let i = 0; i < tds.length; i++) {
+        //     tds[i].onclick = function () {
+        //         var blue = document.querySelectorAll('.blue')[0];
+        //         blue.setAttribute('class', '');
+        //         //清除旧焦点
+        //         this.setAttribute('class', 'blue');
+        //         //设定新焦点
+        //         img.src = 'images/' + (i + 1) + '.jpg';
+        //     };
+        // }
+
+        // 法2:
+        // var tds = document.querySelectorAll('table td');
+        // var img = document.querySelectorAll('img')[0];
+        // for (var i = 0; i < tds.length; i++) {
+        //     (function (j) {
+        //         tds[j].onclick = function () {
+        //             var blue = document.querySelectorAll('.blue')[0];
+        //             blue.setAttribute('class', '');
+        //             this.setAttribute('class', 'blue');
+        //             img.src = 'images/' + (j + 1) + '.jpg';
+        //         };
+        //     }(i));
+        // }
+
+        // 法3:
+        // var tds = document.querySelectorAll('table td');
+        // var img = document.querySelectorAll('img')[0];
+        // for (var i = 0; i < tds.length; i++) {
+        //     tds[i].num = i;
+        //     tds[i].onclick = function () {
+        //         var blue = document.querySelectorAll('.blue')[0];
+        //         blue.setAttribute('class', '');
+        //         this.setAttribute('class', 'blue');
+        //         img.src = 'images/' + (this.num + 1) + '.jpg';
+        //     };
+        // }
+
+        // 法4:
+        var tds = document.querySelectorAll('table td');
+        var img = document.querySelectorAll('img')[0];
+        for (var i = 0; i < tds.length; i++) {
+            tds[i].setAttribute('num', i + 1);
+            //在循环过程中 将i值作为 td属性名绑定在对应的td上
+            tds[i].onclick = function () {
+                var blue = document.querySelectorAll('.blue')[0];
+                blue.setAttribute('class', '');
+                this.setAttribute('class', 'blue');
+                var index = this.getAttribute('num');
+                //获取对应的索引值
+                img.src = 'images/' + index + '.jpg';
+            };
+        }
+    </script>
+</body>
+
+</html>

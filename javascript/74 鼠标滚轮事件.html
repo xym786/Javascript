@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        height: 2000px;
+    }
+    #box {
+        width: 100px;
+        height: 100px;
+        min-height: 50px;
+        background-color: pink;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        //获取box对象 并为box绑定鼠标滚轮事件onmousewheel 但不兼容火狐
+        
+        /*var box = document.getElementById('box');
+        box.onmousewheel = function() { //火狐中触发
+            alert(1);
+        };*/
+
+        //bind函数
+
+        function bind(obj, eventStr, callback) {
+            obj.addEventListener ? obj.addEventListener(eventStr, callback, false) : obj.attachEvent('on' + eventStr, function() {
+                callback.call(obj);
+            });
+        }
+
+        //在火狐中要用DOMMousescroll来绑定滚动事件 且该事件必须通过addEventListener()函数来绑定
+        
+        bind(box, 'DOMMouseScroll', box.onmousewheel);  //火狐中触发 将box.onmousewheel作为变量传入bind函数中
+
+        //也可以将相同的业务功能保存在同一函数中 统一调用
+
+        box.onmousewheel = function(event) {
+            event = event || window.event;
+            //判断鼠标滚轮滚动方向
+            if(event.wheelDelta > 0 || event.detail < 0) {
+                box.style.height = box.offsetHeight + 10 + 'px';
+                /*
+                event.wheelDelta可以获取鼠标滚轮滚动的方向
+                wheelDelta不看数值大小 只看正负(上滚正 下滚负)
+                wheelDelta在火狐中不支持 火狐中使用event.detail获取滚动方向(上滚负 下滚正)
+                */
+            }else if(event.wheelDelta < 0 || event.detail > 0) {
+                box.style.height = box.offsetHeight - 10 + 'px';
+            }
+            /*
+            滚轮滚动时 如果浏览器中有滚动条 滚动条会随滚轮滚动
+            这是浏览器的默认行为 如果不希望发生 需要取消默认行为
+
+            使用addEventListener()方法绑定响应函数 取消默认行为不能再用return false
+            需要用event来取消默认行为 
+            event.preventDefault(); 在IE8中不支持 直接调用会报错 需要先进行判断
+            */
+            event.preventDefault && event.preventDefault();
+            return false;
+        };
+
+        bind(box, 'DOMMouseScroll', box.onmousewheel);
+    };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

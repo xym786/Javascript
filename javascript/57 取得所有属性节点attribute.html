@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>嘎嘎king</title>
+</head>
+
+<body>
+    <div id="main" class="box" cuijn="ok">有内涵的div</div>
+    <script>
+        //取得div的所有属性
+        var div = document.querySelector('div');
+        div.attributes //取得了所有属性节点(伪数组)
+        div.attributes.length; //3
+
+        div.attributes[0].nodeType // 2
+        div.attributes[0].nodeName // id
+        div.attributes[0].nodeValue // main
+
+        div.attributes[1].nodeType // 2
+        div.attributes[1].nodeName // class
+        div.attributes[1].nodeValue // box
+
+        div.attributes[2].nodeType // 2
+        div.attributes[2].nodeName // cuijn
+        div.attributes[2].nodeValue // ok
+
+        div.attributes['id'] //main  ===> div.getAttrbite('id')
+    </script>
+</body>
+
+</html>

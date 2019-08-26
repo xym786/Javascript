@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //强制转换即其他数据类型转换为Number,Boolean,String型
+    /* 
+    1.转换为String型  
+        法1：调用.toString()方法 该方法不影响原变量 但返回结果
+        适用于Number,Boolean型
+    */ 
+    var a = 123;
+    var b = true;
+    var c = null, d = undefined;
+    a = a.toString();
+    b = b.toString();
+    /*c = c.toString();   //该方法有局限性null,undefined没有toString()方法 无法转换
+    d = d.toString();*/
+    console.log(typeof a, a);
+    console.log(typeof b, b);
+    //console.log(typeof c, c + typeof d, d);
+</script>
+<script>
+    /*
+        法2：调用String()函数 并将被转换数据作为参数传给函数
+        此法对于Number,Boolean实际上是调用toString()方法
+        而对null和undefined则不是调用toString()方法
+    */
+   var a = null;
+   a = String(a);
+   var b = undefined;
+   b = String(b);
+   console.log(typeof a, a, typeof b, b)
+</script>
+</body>
+</html>

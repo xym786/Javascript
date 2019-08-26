@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //利用闭包 实现私有化变量
+        var inherit = (function () {
+            var F = function () { };
+            //将F变成私有化变量 一般与外界无关的变量(隐式的 附加的) 私有化更好
+            return function (Target, Origin) {
+                F.prototype = Origin.prototype;
+                Target.prototype = new F();
+                Target.prototype.constructor = Target;
+                Target.prototype.uber = Origin.prototype;
+            }
+        }());
+        function Son() {}
+        Father.prototype = {
+            name: 'su'
+        };
+        function Father() {}
+        inherit(Son, Father);
+        var son = new Son();
+        console.log(son.name);
+    </script>
+</body>
+
+</html>

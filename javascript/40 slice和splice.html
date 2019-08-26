@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var arr = ['su', 'susun', 'sun', 'chelly' ,'egoist'];
+    /*
+    1.slice() 从数组中提取出指定元素(该方法不改变数组的原长度 而是将截取到的元素封装到数组中返回)
+    语法 arrayObject.slice(start, end);
+    参数：start 截取开始位置索引(包含开始位置索引)
+        end 结束位置索引(不包含结束索引)
+    */
+    arr.slice(0, 2);
+    console.log(arr);
+    var result = arr.slice(0, 2);
+    console.log(result);
+    //第二个参数可以省略不写 此时选取开始索引之后的所有元素
+    var result = arr.slice(1);
+    console.log(result);
+    //索引可以传递负值 传递的负值 从后往前计算 -1 表示倒数第一个
+    result = arr.slice(0, -1);
+    console.log(result);
+
+    /*
+    2.splice() 可以用来删除数组中的指定元素
+    splice影响原数组 会将指定元素从原数组中删除
+    并将被删除元素作为返回值返回
+    参数: 第一个 表示开始位置索引
+          第二个 表示删除的数量
+          第三个及以后 可以传递一些新元素 这些元素自动插入到开始索引位置前
+    */
+    arr.splice(0, 2);
+    console.log(arr);
+    /*var result = arr.splice(0, 1);
+    console.log(result);*/
+    var result = arr.splice(0, 1, 'tom', 'jack');
+    console.log(result);
+    console.log(arr);
+    //splice是多功能的方法 可删除 替换 新增元素
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //js中有三种逻辑运算符 && || ！
+    // ! 对布尔值进行非运算 即true → false false → true
+    var a = true;
+    a = !a;
+    console.log(a);
+    //对非布尔值进行运算 先转换为布尔值 再进行运算
+    var b = 10;
+    b = !b;
+    console.log(b);
+    //可以利用此特点将一个值转换为布尔值 !!a和Boolean原理一致
+    var str = 'math';
+    str = !!str;
+    console.log(str);
+</script>
+<script>
+    // && 对符号两侧的值进行运算并返回结果
+    var result = true && true;
+    console.log(result);
+    var result = true && false;
+    console.log(result);    // 同真真 有假假
+    /*
+    js中的 && 属于短路与 如第一个值为false 则不看第二个值
+    类似于if条件语句
+    */
+    false && document.write('false');
+    true && document.write('true');
+</script>
+<script>
+    // ||
+    result = true || false;
+    console.log(result);
+    result = false || false;
+    console.log(result);    // 同假假 有真真
+    /*
+    js中的 || 属于短路或 如第一个值为true 则不看第二个值
+    类似于if条件语句
+    */
+    false || document.write('2 false');
+    true || document.write('2 true');
+</script>
+<script>
+    //对非布尔值的 && || ! 运算 同短路原理
+    /*
+     && 两个都是true时 返回后面的
+        有false时 返回第一个false
+     or
+        当第一个值是false时 返回第一个值
+        当第一个值是true时 返回第二个值
+    */
+    var result = 1 && 2;
+    console.log(result);
+    result = null && '666';
+    console.log(result);
+    /*
+     || 两个都是false时 返回后面的
+        有true时 返回第一个true
+    or
+        当第一个值是true时 返回第一个值
+        当第一个值是false时 返回第二个值
+    */
+    result = null || NaN;
+    console.log(result);
+    result = '233' || undefined;
+    console.log(result);
+</script>
+</body>
+</html>

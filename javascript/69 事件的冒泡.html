@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box1 {
+        width: 200px;
+        height: 200px;
+        background-color: #bfa;
+    }
+    #sp1 {
+        background-color: #baf;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        //获取box1 sp1对象
+        var box1 = document.getElementById('box1');
+        var sp1 = document.getElementById('sp1');
+        //分别为box1 sp1 body绑定单击响应函数
+        box1.onclick = function() {
+            alert('box1');
+        };
+        sp1.onclick = function(event) {
+            event = event || window.event;
+            alert('sp1');
+            //可将事件对象的cancelBubble设为true 即取消冒泡
+            event.cancelBubble = true;  //取消冒泡
+            //event.stopPropagation W3C 取消冒泡
+        };
+        document.body.onclick = function() {
+            alert('body');
+        };
+        /*
+        所谓事件的冒泡就是事件的向上传导
+        当后代元素中事件被触发时 其祖先元素的相同事件也被触发
+
+        在开发中 大部分情况下 冒泡是有用的
+        如果不希望冒泡发生 可以通过事件对象来取消冒泡
+        */
+    }
+    </script>
+</head>
+<body>
+    <div id="box1">
+        <span id="sp1">click</span>
+    </div>
+</body>
+</html>

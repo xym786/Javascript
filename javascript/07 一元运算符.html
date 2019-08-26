@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    一元运算符只操作一个数字    
+    + 正号  - 负号
+    先转换成num之后再运算 可以对其他类型数据使用+ 转为number
+    */
+    var result1 = 1 + '2' + 3;
+    var result2 = 1 + +'2' + 3;
+    console.log(result1, result2);
+</script>
+<script>
+    /*
+    自增 ++ 在自身的基础上增加1
+    一个变量自增后 原变量的值立即加1 自增不操作常量
+    a++ 先执行语句 后自增
+    ++a 先自增 后执行语句
+    自减同理
+    */
+    var a = 5, b = 5;
+    console.log('a = ' + a++, 'b = ' + ++b);
+
+    var c = 20;
+    var result = c++ + ++c + c;//   20 + 22 +22
+    console.log(result);
+</script>
+</body>
+</html>

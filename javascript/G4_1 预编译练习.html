@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        
+        a = 100;
+        function demo(e) {
+            function e() {}
+            arguments[0] = 2;
+            console.log(e); //2
+            if(a) {
+                var b = 123;
+                function c() {} 
+                // 在if中不能使用function 预编译也会阅读if for中的内容 
+                // 只有一种情况使用未定义的变量不报错 typeof a → 'undefined'
+            }
+            var c;
+            a = 10;
+            var a;
+            console.log(b); //un
+            f = 123;
+            console.log(c); //un
+            console.log(a); //10
+        }
+        var a;
+        demo(1);
+        console.log(a); //100
+        console.log(f); //123
+        
+        /*
+        GO {
+            a: 100
+            f: 123
+            demo:
+        }
+        AO {
+            a: 10
+            b:
+            c:
+            e: 1 fune 2
+        }
+        */
+
+        /*var str = false + 1;
+        document.write(str); //1
+        var demo = false == 1;
+        document.write(demo); //false
+        if(typeof(a) && -true + (+undefined) + ' ') {
+            document.write('basic'); //basic
+        }
+        if(11 + '11' * 2 == 33) {
+            document.write('basic2'); //basic2
+        }
+        !!' ' + !!'' - !!false || document.write('print'); //none*/
+        
+
+        console.log(window.foo || (window.foo = 'bar')); //bar (会先读一下括号内的 再看左边的)
+        //window.foo || window.foo = 'bar'; 会报错 因为||的优先级比=高
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

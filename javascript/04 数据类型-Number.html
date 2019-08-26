@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //Number表示js中所有数字 包括整形和浮点型
+    var a = 123;
+    var b = '123';
+    //输出结果是一致的 为了区分a,b的类型 需要使用运算符typeof
+    console.log(typeof a, a);    
+    console.log(typeof b, b);    
+</script>
+<script>
+    console.log(Number.MAX_VALUE);  //js中最大值
+    console.log(Number.MIN_VALUE);  //js中最小值(大于0的)
+    console.log(Number.MAX_VALUE * Number.MAX_VALUE);   //Number表示的数字超过最大值
+    console.log(-Number.MAX_VALUE * Number.MAX_VALUE);  //Number表示的数字超过最小值
+</script>
+<script>
+    var a = 'a' * 'b';  //两字符串相乘 得到的不是一个数字
+    console.log(a, typeof NaN); //使用typeof检查NaN 也会返回number
+</script>
+<script>
+    //js中整数运算基本精确
+    var a = 1;
+    var b = 2;
+    console.log('a + b = ', a + b);
+    //js中进行浮点型运算可能得到一个错误的值 不能使用js进行精度较高的运算
+    var a = 0.1;
+    var b = 0.2;
+    console.log('a + b = ', a + b);
+    console.log(a + b == 0.3);  //验证结果是否和0.3相同 得到布尔值false
+    /*
+    空字符串和一个空格通过Number转换 得到的值为0
+    通过parseInt转换会得到NaN
+    */
+    var a = '', b = ' ';
+    a = Number(a);
+    b = Number(b);
+    console.log(a, b);
+</script>
+<script>
+    /*
+    用isNaN()检验变量是不是一个数字
+    isNaN()中有隐式类型转换 会将非数值型转换为数值型
+    */
+    var a = NaN;
+    var result = isNaN(a);
+    console.log(result);
+</script>
+</body>
+</html>

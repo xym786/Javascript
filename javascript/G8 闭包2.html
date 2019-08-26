@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var demo;
+            function test() {
+                var num = 100;
+                function a() {
+                    console.log(num);
+                }
+                demo = a; //将函数a通过demo保存到函数外部
+            }
+            test();
+            //demo();
+
+            //闭包的作用
+            //1.函数累加器(在不依赖外部变量的情况下 实现函数累加)
+            function add() {
+                var num = 100;
+                function a() {
+                    num++;
+                    console.log(num);
+                }
+                return a;
+            }
+            var counter = add();
+            counter();
+
+            //2.可作缓存(作储存结构)
+            //像缓存需要去取 取过的缓存数据会被用掉 可以添加新缓存 有需要再去获取
+            function eat() {
+                var food = 'apple';
+                var obj = {
+                    /*
+                    将两个函数封装在一个对象中 两个函数都会保存eat的劳动成果
+                    多个函数和一个函数形成闭包 他们可以共有变量 因为他们保存共同的作用域
+                    */
+                    eatFood: function() {
+                        if(food != '') {
+                            console.log('i am eating ' + food);
+                            food = '';
+                        }else {
+                            console.log('empty');
+                        }
+                    },
+                    addFood: function(myFood) {
+                        food = myFood;
+                    }
+                }
+                return obj;
+            }
+            var eater = eat();
+            eater.eatFood();
+            eater.eatFood();
+            eater.addFood('banana');
+            eater.eatFood();
+
+            //3.可实现封装 属性私有化
+
+            //4.模块化开发 防止污染全局变量
+        };
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

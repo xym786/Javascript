@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    创建对象的方法
+    1.var obj = new Object();
+    2.用对象字面量创建一个对象 {}对象字面量
+    */
+    var obj = {};
+
+    /*
+    使用对象字面量创建对象时 可直接指定对象中的属性
+    语法     var 对象名 = {
+                属性名: 属性值,
+                //属性名可以加引号 但建议不加 属性名特殊时 必须加引号
+                属性名: 属性值,
+                属性名: 属性值,
+                ...
+            }
+    */
+    var obj = {
+        name: 'su',
+        gender: 'male',
+        age: 18
+    };
+    console.log(obj);
+    /*
+    属性名和属性值是一组一组的名值对结构
+    名和值之间用 : 连接 多个名值对间用 , 隔开
+    一个属性之后再无其他属性 不要再写 ,
+    */
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //判断一个函数是否是偶数 是偶数返回true 不是则返回false
+
+    /*
+    function isOu(num) {
+        return num % 2 == 0;
+    }
+    while(true) {
+        num = prompt('输入数字:');
+        if(num > 0 || num < 0 || num === '0') {
+            break;
+        }
+        alert('输入有误');
+    }
+    var result = isOu(num);
+    console.log(result);
+    */
+    
+    //求圆的面积
+    
+    /*
+    function mianJi(r) {
+        return r * r * 3.14;
+    }
+    var result = mianJi(2);
+    console.log(result);
+    */
+</script>
+<script>
+    //创建一个函数 可以输出人的信息
+
+    //创建函数 将对象作为参数传入
+    function fun(o) {
+        console.log(o.name);
+        console.log(o.age);
+        console.log(o.gender);
+        console.log(o.adress);
+    }
+    //参数过多时 可创建一个对象 通过对象传递
+    var obj = {
+        name: 'Su',
+        gender: 'male',
+        adress: 'Dalian',
+        age: 18
+    }
+    //调用函数
+    fun(obj);
+
+    //实参可以是一个对象 也可以是一个参数
+    function func(a) {
+        console.log(a);
+        a(obj);
+    }
+    //实参是函数 相当于直接使用函数对象
+    func(fun);
+
+    function fun2(a) {
+        console.log(a);
+    }
+    //调用函数的返回值
+    fun2(fun(obj));
+</script>
+</body>
+</html>

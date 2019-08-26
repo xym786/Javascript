@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //判断元素类型方法
+        function type(obj) {
+            var res;
+            var template = {
+                '0': '[object Array]',
+                '1': '[object Object]',
+                '2': '[object Number]',
+                '3': '[object Boolean]',
+                '4': '[object String]',
+                'length': 5,
+                'splice': Array.prototype.splice
+            };
+            var temp = Object.prototype.toString.call(obj);
+            if (typeof (obj) == 'object') {
+                if (obj === null) {
+                    res = 'null';
+                } else {
+                    for (var i = 0; i < template.length; i++) {
+                        if (template[i] == temp) {
+                            res = template[i];
+                        }
+                    }
+                }
+            } else {
+                res = typeof (obj);
+            }
+            return res;
+        }
+        //console.log(type(new Boolean));
+    </script>
+
+    <script>
+        //字符串去重
+        var str1 = 'ddqwejkfwbhaufbuiweiojqwdsadadwqihbfewu';
+        function strUnique(str) {
+            var arr = str.split('');
+            var obj = {};
+            var newArr = [];
+            for (var i = 0; i < str.length; i++) {
+                if (!obj[arr[i]]) {
+                    obj[arr[i]] = 'abc';
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        //console.log(strUnique(str1));
+    </script>
+
+    <script>
+        //返回第一个出现一次的字符
+        var str2 = 'NJDSAHUIFBHGJIVSBSACHHBSQFCDNJSBGERAYHBGUIE';
+        function first(str) {
+            var newArr = split(str);
+        }
+        console.log(first(str2));
+    </script>
+</body>
+
+</html>

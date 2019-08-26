@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            /*
+            程序的运行可以理解为作用域链的转移过程
+            内部函数被保存到外部 形成闭包 闭包会导致原有作用域链不释放
+            造成内存泄漏(占用内存大 导致内存减少 相当于内存泄漏了)
+            */
+            /*
+            function a() {
+                function b() {
+                    var bbb = 234;
+                    document.write(aaa); //123
+                } //a函数执行 导致b函数被定义
+                var aaa = 123;
+                return b; //将b函数的引用抛出(此时b函数已经被定义)
+            }
+            //当a执行完毕时 a → a AO 断开链接 但 b → a AO 未断开 b仍可访问到a中的变量
+            var glob = 100;
+            var demo = a();
+            demo();
+            */
+            /*
+            GO {
+                a: funa
+                glob: 100
+                demo: funb
+            }
+            a AO {
+                b: funb
+                aaa: 123
+            }
+            b AO {
+                bbb: 234
+            }
+            */
+
+            /*
+            function a() {
+                var num = 100;
+                function b() {
+                    num++;
+                    console.log(num);
+                }
+                return b; //抛出b的引用到全局范围 b被定义过了 但此时并未执行b
+            }
+            var demo = a();
+            demo(); //找到a AO中num并加一 得101
+            demo(); //找到a AO中num并加一 得102
+            */
+            
+            //b执行完毕 回归至初始被定义状态 但仍可访问到a的作用域
+
+            /*
+            GO {
+                a: funa
+                demo: funb
+            }
+            a AO {
+                num: 100
+                b: funb
+            }
+            b AO {
+                
+            }
+            */
+        };
+    </script>
+</head>
+
+<body>
+    <script>
+        //闭包的作用：1.实现公有变量
+        //如：函数累加器
+
+        function add() {
+            var count = 0;
+            function demo() {
+                count++;
+                console.log(count);
+            }
+            return demo;
+        }
+        var counter = add();
+        counter(); //1
+        counter(); //2
+
+
+        //作用：2.可作缓存(储存结构)
+        //一对二的闭包
+        function test() {
+            var num = 100;
+            function a() {
+                num++;
+                console.log(num);
+            }
+            function b() {
+                num--;
+                console.log(num);
+            }
+            return [a, b];
+        }
+        var myArr = test();
+        myArr[0](); //101
+        myArr[1](); //100
+
+
+        function eater() {
+            var food = ''; //obj的两个变量共用一个food变量 形成闭包
+            var obj = {
+                eat: function() {
+                    console.log('i am eating' + food);
+                    food = '';
+                },
+                push: function(myFood) {
+                    food = myFood;
+                }
+            }
+            return obj;
+        }
+        var eater1 = eater();
+        eater1.push('banana');
+        eater1.eat();
+    </script>
+</body>
+
+</html>

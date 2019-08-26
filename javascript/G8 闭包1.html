@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        function test() {
+            var arr = []; //向arr中添加10个函数
+            for(var i = 0; i < 10; i++) {
+                arr[i] = function() {
+                    document.write(i + '\040');
+                }
+                /*
+                将函数的引用分别赋值给arr[0] arr[1] arr[2]...
+                函数中的内容不会去阅读 直到外部调用时 才会读取函数体
+                而此时 此函数中i已成为10
+                */
+            }
+            return arr;
+        }
+        var myArr = test();
+        for(var j = 0; j < 10; j++) {
+            myArr[j]();
+        }
+
+        // (function(j) {
+        //     arr[j] = function() { //立即执行函数执行时 导致此函数被定义 可获取立即执行函数的作用域
+        //         document.write(j + '\040');
+        //     }
+        // }(i));
+        // 要输出0-9的解决(使用立即执行函数解决)
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

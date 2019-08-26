@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    程序运行过程中会产生垃圾 积攒过多 导致程序运行速度过慢
+    所以需要一个回收机制来处理程序中的垃圾
+    */
+    var obj = new Object();
+    //创建对象之后 对其各种操作
+    obj = null;
+    /*
+    当一个对象没有任何变量对它进行引用 此时我们永远无法操作此对象
+    这时他就是一个垃圾 这种对象过多 会大量占用内存空间
+    导致程序变慢 必须对垃圾进行清理
+    js中有自动回收垃圾机制 会自动将垃圾对象在内存中销毁
+    我们不需要也不能进行垃圾的回收操作
+    如果需要进行回收 可以将不再使用的对象设置为null
+    */
+</script>
+</body>
+</html>

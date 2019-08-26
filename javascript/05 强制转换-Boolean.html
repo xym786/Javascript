@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //数字转换为布尔值 除了0和null 都是true
+    var a = 1, b = 0, c = NaN;
+    a = Boolean(a);
+    b = Boolean(b);
+    c = Boolean(c);
+    console.log(a, b, c);
+    //字符串转换为布尔值 除了空串 都是true
+    var str1 = "字符", str2 = "";
+    str1 = Boolean(str1);
+    str2 = Boolean(str2);
+    console.log(str1, str2);
+    //null和undefined转换为布尔值 都是false
+    var d = null, e = undefined;
+    d = Boolean(d);
+    e = Boolean(e);
+    console.log(d, e);
+    //对象转换为布尔值 也是true
+</script>
+</body>
+</html>

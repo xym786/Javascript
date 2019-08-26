@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //使用函数声明创建的函数 会在所有代码执行前被创建 所以可以在函数声明前调用函数
+    fun();
+    fun2();
+    function fun() {
+        console.log('fun');
+    }
+    var fun2 = function() {
+        console.log('fun2');
+    }
+    //全局作用域中变量是全局变量 在页面的任意部分可访问
+</script>
+</body>
+</html>

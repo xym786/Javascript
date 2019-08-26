@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #box1,
+    #box2 {
+        top: 100px;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: pink;
+    }
+    #box2 {
+        top: 300px;
+        background-color: purple;
+    }
+    .line {
+        top: 0;
+        left: 800px;
+        width: 0;
+        height: 2000px;
+        position: absolute;
+        border-left: 1px solid #000;
+    }
+    button {
+        margin: 10px 0 0 10px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        outline: none;
+    }
+    </style>
+
+    <script>
+    window.onload = function() {
+        //获取box1 box2 btn1 btn2对象
+        var box1 = document.getElementById('box1');
+        var box2 = document.getElementById('box2');
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+        var btn5 = document.getElementById('btn5');
+
+        //建立getStyle函数
+        function getStyle(obj, name) {
+            if(window.getComputedStyle) {
+                return getComputedStyle(obj, null)[name];
+            }else {
+                return obj.currentStyle[name];
+            }
+        }
+
+        //点击box1后 使box1向右移动
+        var timer;
+        //定义一个变量 保存定时器标识
+        btn1.onclick = function() {
+            clearInterval(timer);
+            //开启一个定时器 用来执行动画效果
+            timer = setInterval(function() {
+                /*
+                IE中可能获取到auto 所以样式表中要加上left=0
+                getStyle中获取的值带有px 要用parseInt将其值转换为整数 方便直接参与运算
+                */
+                var oldValue = parseInt(getStyle(box1, 'left'));
+                //在旧值基础上增加
+                var newValue = oldValue + 19; 
+                //由于是在旧值的基础上增加19 无法使新值正好增加到800 所以需要增加判断条件
+                if(newValue > 800) {
+                    newValue = 800;
+                }
+                //将新值赋值给box1
+                box1.style.left = newValue + 'px';
+                //当元素到达800px时 使其停止执行动画
+                if(newValue == 800) {
+                    //达到目标后 关闭定时器
+                    clearInterval(timer);
+                }
+            }, 30);
+        };
+
+        /*
+        创建一个可以执行简单动画的函数
+        参数：1.obj要执行动画的对象
+            2.target执行动画的目标位置
+            3.speed移动速度
+            4.执行动画的样式
+            5.callback此回调函数将在动画执行完之后执行
+                达到目标 关闭定时器时执行回调函数(执行1次)
+                回调函数中可以再添加其他动画效果
+        */
+        function move(obj, target, speed, attr, callback) {
+            clearInterval(obj.timer);
+            //获取元素目前位置
+            var current = parseInt(getStyle(obj, attr));
+            //元素开始位置不明 当目前位置大于目标位置时 speed为负值 反向移动
+            if(current > target) {
+                speed = -speed;
+            }
+            /*
+            如果定时器标识由全局变量timer保存
+            那么所有正在执行的定时器都在这个变量中保存 因此会互相影响 所以不能在全局中定义timer
+            应向执行动画的对象中添加timer属性 保存他自己的定时器标识
+            */
+            obj.timer = setInterval(function() {
+                var oldValue = parseInt(getStyle(obj, attr));
+                var newValue = oldValue + speed;
+                //向右移动时 判断newValue是否大于target
+                if(newValue > target && speed > 0) {
+                    newValue = target;
+                //向左移动时 判断newValue是否小于target
+                }else if(newValue < target && speed < 0) {
+                    newValue = target;
+                }
+                obj.style[attr] = newValue + 'px';
+                if(newValue == target) {
+                    clearInterval(obj.timer);
+                    //但如果不传入回调函数会报错 所以需要判断是否有回调函数
+                    callback && callback();
+                }
+            }, 30);
+        }
+
+        //将上面btn1的单击响应函数层叠掉
+        btn1.onclick = function() {
+            move(box1, 800, 19, 'left');
+        };
+        btn2.onclick = function() {
+            move(box2, 800, 19, 'left');
+        };
+        btn3.onclick = function() {
+            move(box1, 0, 19, 'left');
+        };
+        btn4.onclick = function() {
+            move(box2, 0, 19, 'left');
+        };
+        btn5.onclick = function() {
+            //回调函数中再调用其他函数 可以逐步实现其他动画效果
+            move(box2, 800, 19, 'left', function() {
+                move(box2, 0, 19, 'left', function() {
+                    move(box2, 400, 10, 'width', function() {
+                        move(box2, 400, 10, 'height', function() {
+                            move(box2, 0, 15, 'top');
+                        });
+                    });
+                });
+            });
+        };
+    };
+
+    //可以将其封装到外部文件中 需要时 直接调用
+    </script>
+</head>
+<body>
+    <button id="btn1">box1_left</button>
+    <button id="btn2">box2_left</button>
+    <button id="btn3">box1_right</button>
+    <button id="btn4">box2_right</button>
+    <button id="btn5">test</button>
+    <br />
+    <br />
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div class="line"></div>
+</body>
+</html>

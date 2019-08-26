@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            top: 300px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: pink;
+            border-radius: 50%;
+        }
+
+        div:nth-child(2) {
+            top: 200px;
+            left: 300px;
+        }
+
+        div:nth-child(3) {
+            top: 200px;
+            left: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        //获取对象 并初始化变量
+        var divs = document.querySelectorAll('div');
+        var speedX = 1;
+        var speedY = 1;
+
+        //定义2个对象碰撞动画
+        function crash(obj1, obj2) {
+            var centerX1 = obj1.offsetLeft + obj1.offsetWidth / 2;
+            var centerY1 = obj1.offsetTop + obj1.offsetHeight / 2;
+
+            var centerX2 = obj2.offsetLeft + obj2.offsetWidth / 2;
+            var centerY2 = obj2.offsetTop + obj2.offsetHeight / 2;
+
+            var crashX = Math.abs(centerX1 - centerX2);
+            var crashY = Math.abs(centerY1 - centerY2);
+
+            var temp = Math.sqrt(crashX * crashX + crashY * crashY);
+            if (temp <= obj1.offsetWidth / 2 + obj2.offsetWidth / 2) {
+                temp = obj1.offsetWidth / 2 + obj2.offsetWidth / 2;
+            }
+            if (temp == obj1.offsetWidth / 2 + obj2.offsetWidth / 2) {
+                obj1.speedX = -obj1.speedX;
+                obj1.speedY = -obj1.speedY;
+            }
+        }
+
+        //将过渡函数F的返回值保存出来 形成闭包
+        var M1 = F(divs[0], divs[1], divs[2]);
+        var M2 = F(divs[1], divs[0], divs[2]);
+        var M3 = F(divs[2], divs[1], divs[0]);
+
+        //执行动画
+        setInterval(function () {
+            M1();
+            M2();
+            M3();
+        }, 1);
+
+        //利用闭包实现变量继承
+        function F(obj, obj2, obj3) {
+            obj.speedX = speedX;
+            obj.speedY = speedY;
+
+            function moveObj() {
+                var oldValueX = obj.offsetLeft;
+                var oldValueY = obj.offsetTop;
+
+                if (oldValueX >= window.innerWidth - obj.offsetWidth) {
+                    oldValueX = window.innerWidth - obj.offsetWidth;
+                }
+                if (oldValueX <= 0) {
+                    oldValueX = 0;
+                }
+
+                if (oldValueY >= window.innerHeight - obj.offsetHeight) {
+                    oldValueY = window.innerHeight - obj.offsetHeight;
+                }
+                if (oldValueY <= 0) {
+                    oldValueY = 0;
+                }
+
+                if (oldValueX == window.innerWidth - obj.offsetWidth && obj.speedX > 0) {
+                    obj.speedX = -obj.speedX;
+                }
+                if (oldValueX == 0 && obj.speedX < 0) {
+                    obj.speedX = -obj.speedX;
+                }
+
+                if (oldValueY == window.innerHeight - obj.offsetHeight) {
+                    obj.speedY = -obj.speedY;
+                }
+                if (oldValueY == 0 && obj.speedY < 0) {
+                    obj.speedY = -obj.speedY;
+                }
+
+                obj.style.left = oldValueX + obj.speedX + 'px';
+
+                obj.style.top = oldValueY + obj.speedY + 'px';
+
+                crash(obj, obj2);
+                crash(obj, obj3);
+            }
+            return moveObj;
+        }
+    </script>
+</body>
+
+</html>

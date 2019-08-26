@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    条件表达式 ? 语句1 : 语句2;  
+    流程: 先执行条件表达式(非布尔值要转换成布尔值) true → 语句1 false → 语句2
+    */
+    var a = 10, b = 20;
+    a > b ? alert('a大') : alert('b大');
+    /*
+    取a b中最大值
+    var max = a > b ? a : b;
+    再取a b c中最大值
+    var max = max > c ? max : c;
+    */
+    var a = 20, b = 30, c = 25;
+    //不推荐使用此语句 不方便阅读
+    var max = a > b ? (a > c ? a : c) : (b > c ? b : c);
+    console.log('max = ' + max);
+</script>
+</body>
+</html>

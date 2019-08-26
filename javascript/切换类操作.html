@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .one {
+            background-color: pink;
+            color: aqua;
+        }
+
+        .two {
+            background-color: aqua;
+            color: pink;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>123</button>
+    <p class="one">123</p>
+
+    <script>
+        var btn = document.querySelectorAll('button')[0];
+        var p = document.querySelectorAll('p')[0];
+        btn.onclick = function() {
+            if(p.className == 'one') {
+                //切换类
+                p.setAttribute('class', 'two');
+            }else {
+                p.setAttribute('class', 'one');
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    基本数据类型 String Number Boolean Null Undefined
+    引用数据类型 Object
+    在js中提供了三个包装类 通过这三个包装类 可以将基本数据类型的数据转换为对象
+    String() Boolean() Number()
+    String() 将基本数据类型字符串转换为String对象 其余同理
+    */
+    var a = 123;
+    var num = new Number(3);
+    console.log('num = ' + typeof num);
+
+    var str = new String('hello');
+    console.log('str = ' + str + '\\' + typeof str);
+
+    var bool = new Boolean(true);
+    console.log('boolo = ' + bool + '\\' + typeof bool);
+
+    //向 num中添加一个属性
+    num.hello = 'abc';
+    console.log(num.hello);
+    var bool = new Boolean(true);
+    var bool2 = true;
+    console.log(bool == bool2);
+    /*
+    在比较相等的过程中 有自动的数据类型转换
+    对象的自动类型转换
+    1.转换为String型 优先调用toString()方法 得不到基本数据类型 再调用valueof()方法 仍返回方法则报错
+    2.装换为Number型 有valueof()方法则调用 返回的不是数字 再调用toString()方法
+    3.转换为Boolean型 对象转换为Boolean都是true
+    */
+    console.log(bool === bool2);
+    var bool3 = new Boolean(false);
+    console.log(bool2 == bool3);
+    /*
+    应当注意的是 在开发过程中 我们不使用基本数据类型的对象
+    使用基本数据类型的对象 可能带来不可预期的后果
+    */
+    var b = new Boolean(false);
+    if(b) {
+        alert('run');
+    }
+
+    /*
+    开发中不使用包装类 但浏览器自己会使用
+    方法和对象可以添加给属性 不能添加给基本数据类型
+    我们对一些基本数据类型的值调用方法时
+    浏览器会临时使用包装类 将其转换为对象 之后调用对象的属性和方法
+    */
+    var s = 123;
+    //浏览器会临时使用包装类 将其转换为对象 之后调用对象的属性和方法
+    s = s.toString();
+    console.log(s, typeof s);
+    //在调用完成之后 再转换为基本数据类型
+
+    s.hello = '你好';
+    /*
+    先临时将s封装为对象 添加hello 后又转回基本类型
+    要读取s中的hello属性 临时将s封装为对象后读取hello属性 此时hello属性未定义 返回undefined
+    */
+    console.log(s.hello);
+</script>
+</body>
+</html>

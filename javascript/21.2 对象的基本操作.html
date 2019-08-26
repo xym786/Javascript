@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    1.创建对象
+    使用new关键字调用函数 是构造函数constructor
+    构造函数是专门创建对象的函数
+    */
+
+    var obj = new Object();
+    //console.log(typeof obj, obj);
+    //在对象中保存的值为属性
+
+    //2.向对象中添加属性 对象.属性名 = 属性值;
+    //向obj中添加name属性
+    obj.name = 'su';
+    //再添加gender和age属性
+    obj.gender = 'male';
+    obj.age = 18;
+    //console.log(obj);
+
+    //3.读取对象中的属性 对象.属性名
+    console.log(obj.name);
+    //读取对象中没有的属性 不报错 返回 undefined
+    console.log(obj.height);
+
+    //4.修改对象属性值 对象.属性名 = 新值;
+
+    //5.删除对象属性 delete 对象.属性名
+    delete obj.name;
+    console.log(obj.name);
+
+</script>
+</body>
+</html>

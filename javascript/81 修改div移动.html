@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0; 
+    }
+    #box {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: pink;
+    }
+    </style>
+
+    <script>
+    window.onload = function() {
+        //为了消除div第一次移动的卡顿 需要将控制速度和方向的函数分开定义
+
+        //创建一个变量dir表示方向 将speed提取出来 使得下面的函数都可以看到speed
+        var dir, speed = 10;
+        //开启一个定时器 控制div移动速度
+        setInterval(function() {
+            switch(dir) {
+                case 37:
+                    box.style.left = box.offsetLeft - speed + 'px';
+                    break;
+                case 38:
+                    box.style.top = box.offsetTop - speed + 'px';
+                    break;
+                case 39:
+                    box.style.left = box.offsetLeft + speed + 'px';
+                    break;
+                case 40:
+                    box.style.top = box.offsetTop + speed + 'px';
+                    break;
+            }
+        }, 30);
+
+        //为document绑定键盘按键按下事件
+        document.onkeydown = function(event) {
+            //兼容IE8浏览器
+            event = event || window.event;
+            /*
+            当按键unicode编码在37~40范围中时 将编码赋值给dir 
+            按键编码不在此范围时 dir不发生改变 为了div在移动过程中不受其他按键影响
+            */
+            switch(event.keyCode) {
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    dir = event.keyCode;
+                    break;
+            }
+            //按下alt键时 修改speed值为50
+            if(event.altKey) {
+                speed = 50;
+                //取消alt键默认行为
+                return false;
+            }
+        };
+
+        //为document绑定键盘按键松开事件
+        document.onkeyup = function(event) {
+            event = event || window.event;
+            //当按键编码在37~40时 松开按键 修改dir数值为0 为避免其他按键松开时 修改dir的数值
+            switch(event.keyCode) {
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    dir = 0;
+                    break;
+            }
+            //当松开按键时 检查alt键是否按下 如没有按下alt键 修改speed数值为原数值10
+            if(!event.altKey) {
+                speed = 10;
+            }
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1.js代码可以书写在onclick中 点击时 代码执行 -->
+    <button onclick="alert('clicked')">click here</button>
+    <!-- 2.js代码可以书写在超链接的href属性中 点击时 代码执行 -->
+    <a href="javascript:alert('link')">链接1</a>
+    <a href="javascript:">链接2</a>
+<script>
+    // 3.js代码可以书写在script标签中
+    alert("Hello!");
+    /*
+    在标签当中书写不方便维护 不推荐使用 推荐使用第四种方法 在外部引入js文件
+    不仅可在不同页面中引用 并且利用了浏览器的缓存机制
+    */
+</script>
+<!-- 用于引入外部链接的script标签 不写其余的js代码 -->
+<script src="02 js.js"></script>
+</body>
+</html>

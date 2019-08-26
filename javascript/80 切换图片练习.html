@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    img {
+        width: 300px;
+        height: 220px;
+    }
+    button {
+        padding: 5px 10px;
+        border-radius: 10px;
+        border: 0;
+        outline: none;
+        background-color: skyblue;
+        cursor: pointer;
+    }
+    body button:first-of-type {
+        margin-left: 100px;
+    }
+    </style>
+
+    <script>
+    //使图片自动切换
+    window.onload = function() {
+        //获取img对象
+        var img = document.getElementsByTagName('img')[0];
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        //创建数组保存图片路径
+        var imgArr = ['images/1.jpg', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.jpg'];
+        //创建一个变量 保存图片索引
+        var index = 0;
+        //timer定义在外面 为了让btn2中的函数也可以读取到
+        var timer;
+        //为开始按钮btn1绑定单击响应函数 当点击btn1时 定时器开启
+        btn1.onclick = function() {
+            /*
+            开启定时器前 需要将当前元素上其他定时器关闭
+
+            多次点击开始按钮问题 多次点击相当于开启多个定时器
+            图片切换速度会加快 每开启一个定时器 timer会赋值给最新的定时器 所以我们只能关闭最后一个定时器
+            所以在开启一个定时器前 需要关闭上一个定时器
+            */
+            clearInterval(timer);
+            //开启定时器 来自动切换图片
+            timer = setInterval(function() {
+                //使index自增
+                index++;
+                //判断index是否超过最大索引
+                if(index > imgArr.length - 1) {
+                    index = 0;
+                }
+                img.src = imgArr[index];
+            }, 1000);
+        };
+        //设置结束按钮btn2
+        btn2.onclick = function() {
+            /*
+            如没有点击开始按钮 直接点击结束按钮 clearInterval()中会传入undefined
+
+            clearInterval()中可接受任意参数 如果参数是有效的定时器标识
+            则停止对应的定时器 如参数不是一个有效标识 则什么也不做
+            */
+            clearInterval(timer);
+        };
+    };
+    </script>
+</head>
+<body>
+    <img src="images/1.jpg" alt="">
+    <br /> <br />
+    <button id="btn1">Play</button>
+    <button id="btn2">State</button>
+</body>
+</html>

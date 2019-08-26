@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //不使用全局模式 索检到str中所有的字母
+    var str = '1a2c3b4d5e6f7A8B9C';
+    function getLetter(string) {
+        var arr = [];
+        for(var i = 1; i < string.length; i += 2) {
+            newStr = string.slice(i);
+            var letter = newStr.match(/[a-z]/i);
+            arr.push(letter);
+        }
+        return arr;
+    }
+    var result = getLetter(str);
+    console.log((typeof result) + '\040' + 'result = ' + result); 
+    var result2 = result.join();
+    console.log((typeof result2) + '\040' + 'result2 = ' + result2);
+    /*var result = str.match(/[a-z]/i);
+    console.log(result);*/
+</script>
+</body>
+</html>

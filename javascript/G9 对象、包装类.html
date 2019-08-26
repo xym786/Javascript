@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //模拟构造函数(较低级)
+        function Person(name, height) {
+            var that = {};
+            that.name = name;
+            that.height = height;
+            return that;
+        }
+        var person = Person('su', 100);
+        //console.log(person.name);
+
+        function People(name, age) {
+            //var this = {}; 自动创建一个this对象
+            this.name = name;
+            this.age = age;
+            //通过new调用 可以自己定义return的值(默认return this) 可以return对象 函数 数组 其余会被自动忽略
+        }
+        var people = new People('su', 18);
+        //console.log(people.age);
+    </script>
+
+    <script>
+        //包装类
+        var str = 'abcd';
+        str.length = 2; // new String('abcd') = 2; 不保存 直接删除
+        //console.log(str, str.length);
+
+        var str1 = 'abc';
+        str += 1;
+        var test = typeof(str);
+        if(test.length == 6) {
+            test.sign = 'typeof的返回结果可能是string'; // new String(test).sign = '~~~'; 复制之后 不保存便删除
+        }
+        //console.log(test.sign); // console.log(new String(test).sign); 重新将test包装成对象 读取test中的sign属性
+    </script>
+</body>
+
+</html>

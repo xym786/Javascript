@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    可反复循环一个语句多次
+    while(条件表达式) {
+        语句;
+    }
+    对条件表达式求值 值为true则执行循环体
+    循环体执行完毕后 继续对表达式进行判断 
+    值为true 继续执行 值为false 终止循环
+    */
+</script>
+<script>
+    /*
+    条件表达式为true的循环叫做死循环
+    不会停止 直到浏览器关闭 开发中慎用
+    可以用break跳出循环
+    */
+    
+    /*
+    var n = 1;
+    while(true) {
+        alert(n++);
+        if(n == 10) {
+            break;
+        }
+    }
+    */
+</script>
+<script>
+    /*
+    创建循环步骤
+    1.初始化变量
+    2.循环中设置条件表达式
+    3.定义一个更新表达式 每次更新初始化变量
+    */
+    var i = 1;
+    while(i <= 10) {
+        alert(i);
+        i++;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        A instanceof B  检查A是不是B构造出来的
+        检查A对象的原型链上有没有B对象的原型
+        */
+
+        //var obj = {} || []; obj对象可能是对象或数组
+        /*
+        判断对象obj是对象还是数组的3种方法
+        1.obj.constructor
+        2.obj instanceof Array
+        3.Object.prototype.toString().call(obj); 通过call改变toString()中的this指向
+            数组返回：object Array 对象返回：object Object
+        */
+        var obj = {};
+        console.log(obj.constructor);
+        console.log(obj instanceof Array);
+        console.log(Object.prototype.toString.call(obj));
+
+        //自定义myIsNaN()
+        function myIsNaN(num) {
+            var num = Number(num);
+            var str = num.toString();
+            if(str === "NaN") {
+                console.log(true);
+            }else {
+                console.log(false);
+            }
+        }
+        myIsNaN('123456');
+    </script>
+</body>
+
+</html>

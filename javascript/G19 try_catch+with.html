@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //try中发生错误 不执行错误后的try中代码 报错后直接执行catch中的代码
+        // try {
+        //     console.log('a');
+        //     console.log(b); //Error 报错后 直接执行catch中内容
+        //     console.log('c'); //不执行
+        // } catch(e) {
+        //     console.log(e.name + ' : ' + e.message);
+        // }
+        // console.log('d'); //正常执行
+
+        /*
+        EvalError: eval()使用与定义不一致
+        RangeError: 数值越界
+        ReferenceError: 非法或不能识别的引用数据
+        SyntaxError: 发生语法解析错误
+        TypeError: 操作数类型错误
+        URIError: URI处理函数使用不当
+        */
+
+        var obj = {
+            name: 'obj'
+        };
+        var name = 'window';
+        function test() {
+            var name = 'scope';
+            with (obj) {
+            /*
+            with可改变作用域链 将obj放在作用域链的最顶端
+            不推荐使用with 改变作用域链 程序效能不佳
+            */
+                console.log(name); //obj
+            }
+        }
+        test();
+
+        //可以简化代码
+        with(document) {
+            write('a');
+            write('b');
+        }
+    </script>
+</body>
+
+</html>

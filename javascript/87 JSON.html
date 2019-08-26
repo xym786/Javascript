@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        /*
+        JS对象只有自己认识 其他语言都不认识
+        JSON就是一个特殊格式的字符串 这个字符串可以被任意语言所识别
+        并且可以转换为任意语言中的对象 JSON在开发中主要用于数据交互
+        JSON Javascript Object Notation JS对象表示法
+        JSON和JS对象的格式一样 只不过JSON字符串中的属性名必须加双引号
+        其它格式和JS代码一样
+        */
+
+        /*
+        JSON分类：1.对象
+            2.数组
+        JSON中允许的值：1.字符串 2.数字型 3.布尔值 4.null
+            5.undefined 6.对象 7.数组 (不能有函数)
+        */
+
+        //创建一个对象
+        var obj = '{"name":"su", "age":18, "gender":"male"}';
+        var arr = '[1, 2, 3, "hello", true]';
+        var obj2 = '{"arr":[1, 2, 3]}';
+        var arr2 = '[{"name":"su", "age":18, "gender":"male"}, {"name":"su", "age":18, "gender":"male"}]';
+
+        /*
+        将JSON字符串转换为JS中的对象：
+        在JS中 为我们提供了工具类 就叫JSON
+        这个对象可以帮我们将一个JSON转换为JS对象
+        也可以讲一个JS对象转换为JSON
+        */
+
+        /*
+        将obj转换为JS对象：
+            JSON.parse()可将JSON字符串转换为JS对象
+            他需要一个JSON字符串作参数 会将该字符串转换为JS对象并返回
+        */
+        
+        var o = JSON.parse(obj);
+        console.log(o.age);
+
+        var o2 = JSON.parse(arr);
+        console.log(o2);
+        console.log(o2[1]);
+
+        /*
+        JSON.stringify() 可以将一个JS对象转换为JSON字符串
+        需要一个JS对象作参数 会返回一个JSON字符串
+        */
+        var obj3 = {name:"su", age:18, gender:"male"};
+        var str = JSON.stringify(obj3);
+        console.log(str);
+
+        /*
+        JSON在IE7中不兼容
+        eval()这一函数可用来执行一段字符串形式的JS代码 并将结果返回
+        如果使用eval执行的字符串中有{} 他会将{}当作代码块
+        如果不希望将其当作代码块解析 需要在字符串前后各加一个()???
+        */
+        var str = "alert('hello');";
+        eval(str);
+        var obj4 = eval(obj3);
+        console.log(obj4);
+
+        /*
+        eval()函数功能强大 可以直接执行一个字符串中JS代码
+        但在开发中尽量不使用 首先执行性能较差 还具有安全隐患
+        如要兼容IE7以下的JSON操作 可通过引入外部JS文件来处理
+        */
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

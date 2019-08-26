@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //this:
+        //  1. this在全局作用域
+        //      浏览器的全局作用域的this就是window
+        console.log(this === window);   //true
+        //  2. this在函数内
+        //      2.1 在函数定义时，无法决定this的指向(函数执行时，才能决定this是谁(也叫执行上下文))
+        //      2.2 根据函数的调用方式不同，this的指向也不同
+        //          a) 当函数以普通的方式调用 hello(),在这个调用中，hello内的this指向window
+        //          b) 当函数以对象的方法调用 xxx.hello(),在这个调用中，hello内的this指向xxx
+        //  3. this在构造函数中(new操作符)
+        //      this指向new出来的实例
+        //  4. this箭头函数内
+        //      箭头函数内没有自己的this，如果出现了this，向外层作用域查找
+        //  5. 掰弯this
+
+        var givenName = 'Hong'
+        var familyName = 'Xiao'
+
+        function hello() {
+            console.log(`你好，我是${this.givenName}`)
+        }
+
+        hello() //this指向window
+        var p = {
+            givenName: "Chao",
+            familyName: "Xiao",
+            hello: function () {
+                // function fullName() {
+                //     return `${this.givenName} ${this.familyName}`
+                // }
+                // console.log(`你好，我是${fullName()}`)  //输出"Hong Xiao"
+                
+                let fullName = () => {
+                    //箭头函数没有自己的this,所有在这里，this就是hello的this
+                    return `${this.givenName} ${this.familyName}`
+                }
+
+                console.log(`你好，我是${fullName()}`)  //输出啥不一定
+            }
+        }
+
+        p.hello()   //this就是p，输出chao xiao
+
+        var hi = p.hello;
+        hi()    //this指向window, 输出hong xiao
+
+        p.hi = hello
+        p.hi()  //this指向p
+    </script>
+</body>
+
+</html>

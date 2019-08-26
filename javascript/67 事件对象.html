@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #areaDiv {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #333;
+    }
+    #showMsg {
+        margin-top: 10px;
+        width: 200px;
+        height: 20px;
+        border: 1px solid #333;
+        line-height: 20px;
+    }
+    </style>
+    <script>
+    //当鼠标在areaDiv中移动时 在showMsg中显示鼠标的坐标
+    window.onload = function() {
+        //获取两个div对象
+        var areaDiv = document.getElementById('areaDiv');
+        var showMsg = document.getElementById('showMsg');
+        //为areaDiv绑定onmousemove事件 该事件将在鼠标在areaDiv中移动时触发
+        areaDiv.onmousemove = function(event) {
+            /*
+            event 事件对象
+            当事件的响应函数被触发时 浏览器每次都会将一个事件对象作为实参传进响应函数
+            在事件对象中封装了当前事件相关的一切信息
+            eg：鼠标的坐标 键盘哪个按键被按下 鼠标滚轮滚动的方向
+            */
+
+            /*
+            在IE8中 响应函数触发时 浏览器不会传递事件对象
+            在IE8及以下浏览器中 是将事件对象作为window对象的属性保存的 
+            */
+            event = window.event || event; //解决兼容性问题 火狐中window.event不兼容
+            /*if(!event) {
+                event = window.event;
+            }*/
+
+            //clientX clientY 分别可以获取鼠标的水平/垂直坐标
+            var top = event.clientY;
+            var left = event.clientX;
+            //在showMsg中显示鼠标坐标
+            showMsg.innerHTML = 'X = ' + left + ', Y = ' + top;
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="areaDiv"></div>
+    <div id="showMsg"></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var obj = {
+        name: 'su',
+        address: 'Dalian',
+        sayHello: function() {
+            /*
+            如果一个函数作为对象属性保存 那么这个函数就是此对象的方法
+            调用函数就是调用对象的方法 只有名称的区别 无本质差别
+            */
+            alert('hello');
+        }
+    }
+    obj.sayHello();
+    /*
+    console.log();调用console的log方法
+    document.write();调用document的write方法
+    */
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var btn1 = document.getElementById('btn1');
+            var btn2 = document.getElementById('btn2');
+            var timer;
+            //延时调用setTimeout 一个函数不会马上执行 而是隔一段时间后再执行
+            btn1.onclick = function () {
+                timer = setTimeout(function () {
+                    alert(1);
+                }, 2000);   //2s后执行 且只执行一次
+            };
+
+            /*
+            使用clearTimeout()可以关闭一个延时调用
+            延时调用和定时调用实际上可以相互替代 开发中可根据实际需要选择
+            */
+            btn2.onclick = function () {
+                clearTimeout(timer);
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn1">click1</button>
+    <button id="btn2">click2</button>
+
+    <script>
+        //注意setTimeout()的执行顺序
+        // setTimeout(function() {
+        //     alert(1); //先记录下要执行的函数内容 运行完下面的函数后 返回该位置 如果延时时间到了 则执行 有多个延时函数时 则先执行延时时间短的
+        // }, 1000);
+        // document.write('hello');
+        // document.write('world');
+
+        //如何利用setTimeOut()实现setInterval()的功能 或者如何避免setInterval()事件累积
+        function fun() {
+            console.log(1);
+            setTimeout(function() {
+                fun();
+            }, 1000);
+        }
+        fun();
+    </script>
+</body>
+
+</html>

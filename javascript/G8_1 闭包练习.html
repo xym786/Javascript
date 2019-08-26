@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin: 20px auto;
+            width: 100px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            width: 100%;
+            height: 20px;
+            background-color: pink;
+            list-style: none;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            //使用原生JS addEventListener 给每个li元素绑定一个click事件 输出他们的顺序
+            var lis = document.querySelectorAll('ul li');
+            for (var i = 0; i < lis.length; i++) {
+                (function (j) {
+                    lis[j].addEventListener('click', function () {
+                        alert(j);
+                    }, false);
+                }(i));
+            }
+
+            //求一个字符串的字节长度(一个中文占2字节 一个英文占1字节)
+            var str = 'ddws编程思想';
+            var sum = str.length;
+            for(var i = 0; i < str.length; i++) {
+                if(str.charCodeAt(i) > 255) {
+                    //当unicode编码 > 255时 为中文
+                    sum++;
+                }0 
+            }
+            alert(sum);
+
+            // , 运算符  将 , 之后的作为结果返回
+            var f = (
+                function f() {
+                    return '1';
+                },
+                function g() {
+                    return 2;
+                }
+            )();
+            console.log(typeof f); //number 2
+
+            /*
+            () 会使其中函数声明变成表达式 从此z便消失了
+            typeof是唯一使用未定义变量不报错的方式
+            */
+            var x = 1;
+            if (function z() { }) {
+                x += typeof z;
+            }
+            console.log(x);
+
+            // eg
+            var num = 100;
+            function test() {
+                console.log(num);
+            }
+            num = 200;
+            test();
+        };
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

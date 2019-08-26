@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        //求任意个数字之和
+        function sum(a, b) {
+            var result = 0;
+            for(var i = 0; i < arguments.length; i++) {
+                result += arguments[i];
+            }
+            return result;
+        }
+        //alert(sum(1, 2, 2));
+
+        function sum(a, b) {
+            var result = 0;
+            arguments[0] = 1;
+            //a = 3;
+            arguments[1] = 3;
+            /*
+            在这个函数中 a和arguments[0]两个变量之间存在映射规则 会一起变化
+            a发生变化 arguments[0]也会发生变化 arguments[0]发生变化 a也会发生变化
+            此函数中 b没有传实参 则b和arguments[1]之间不存在映射关系 不重新定义arguments[1] 其为undefined
+            */
+            for(var i = 0; i < arguments.length; i++) {
+                result += arguments[i];
+            }
+            return result;
+        }
+        alert(sum(2));
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

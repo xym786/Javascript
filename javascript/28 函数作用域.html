@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    调用函数时创建函数作用域 执行完毕后销毁
+    每调用一次函数 创建一个函数作用域 他们之间相互独立
+    在函数中 作用域可以访问到全局作用域的变量
+    在全局作用域中 无法访问到函数作用域的变量
+    在函数作用域中 要接收变量时 他会先在自身作用域中寻找
+    有就直接使用 没有就向上一级作用域中寻找
+    直至找到全局作用域 全局中仍然没有 则会报错 ReferenceError
+    */
+    var a = 10;
+    function fun() {
+        var a = 'fun中的变量a';
+        var b = 20;
+        console.log('a = ' + a);
+        function fun2() {
+            console.log('a = ' + window.a);
+            //访问全局中a变量
+            console.log('a = ' + a);
+        }
+        fun2();
+    }
+    fun();
+    //在函数中访问全局变量 可以使用window对象
+
+    /*
+    在函数作用域中也有声明提前的特性
+    使用var关键字声明的变量 会在函数中所有代码被执行前被声明
+    */
+    function fun3() {
+        console.log(a);
+        var a = 35;
+    }
+    fun3();
+
+    /*
+    函数声明也会在函数中所有代码执行前执行
+    在函数中 不使用var声明的变量会成为全局变量
+    */
+    var c = 33;
+    function fun5() {
+        console.log('c = ' + c);
+        c = 10;
+    }
+    fun5();
+    console.log(c);
+</script>
+</body>
+</html>

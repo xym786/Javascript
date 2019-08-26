@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    函数也是一个对象
+    函数中可封装一些功能 必要时可执行这些功能
+    函数中可保存一些代码 在需要时调用
+    */
+
+    //创建一个函数
+    var fun = new Function();
+    console.log(typeof fun, fun);
+    //可以将要封装的代码以字符串的形式传递给构造函数
+    var fun = new Function("alert('hello')");
+    /*
+    封装到函数中的代码不会立即执行
+    函数中的代码会在调用时执行 语法 函数对象();
+    */
+    fun();
+    //函数具有所有对象所具有的特点 fun.name = 'su';
+
+    /*
+    开发中很少用构造函数来创建函数 一般用声明来创建
+    function 函数名([形参1, 形参2, 形参3, ... 形参n]) {
+        函数体;
+    }
+    */
+    //声明函数
+    function fun() {
+        alert('hello');
+    }
+    //调用函数
+    fun();
+
+    //用函数表达式创建函数
+    var fun = function() {
+        //将匿名函数赋值给变量
+        console.log('hello');
+    };
+    fun();
+</script>
+</body>
+</html>

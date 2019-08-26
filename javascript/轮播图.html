@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            margin: 100px auto;
+            width: 300px;
+            height: 260px;
+            padding: 15px;
+            position: relative;
+            background-color: greenyellow;
+            overflow: hidden;
+        }
+
+        #imgList {
+            left: 15px;
+            position: absolute;
+            list-style: none;
+        }
+
+        #imgList li {
+            margin-right: 15px;
+            width: 300px;
+            height: 260px;
+            float: left;
+        }
+
+        #imgList li:last-child {
+            margin-right: 0;
+        }
+
+        #arch {
+            bottom: 20px;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 2;
+            position: absolute;
+            height: 15px;
+        }
+
+        #arch li {
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+            float: left;
+            background-color: rgba(0, 0, 0, .6);
+            list-style: none;
+            cursor: pointer;
+        }
+
+        #arch li:hover {
+            background-color: rgba(255, 255, 255, .6);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul id="arch">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script>
+        //获取目标对象
+        function getObj(obj) {
+            return document.getElementById(obj);
+        }
+        var imgList = getObj('imgList');
+        var lis = document.querySelectorAll('#imgList li');
+
+        //动态设置imgList宽度
+        imgList.style.width = lis.length * 315 - 15 + 'px';
+
+        //设置图片背景
+        var imgArr = ['images/1.jpg', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.jpg'];
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].style.background = 'url(' + imgArr[i] + ')';
+            lis[i].style.backgroundSize = 'cover';
+        }
+        lis[lis.length - 1].style.background = 'url(\'images/1.jpg\')';
+        lis[lis.length - 1].style.backgroundSize = 'cover';
+
+        var arch = getObj('arch');
+        var archLis = document.querySelectorAll('#arch li');
+        arch.style.width = archLis.length * 25 + 'px';
+
+        setArch(0);
+        var count = 0;
+        var timer;
+        function autoPlay(index) {
+            timer = setInterval(function () {
+                index++;
+                imgList.style.left = 15 - 315 * index + 'px';
+                imgList.style.transition = 'all 1s linear';
+                if (index == lis.length) {
+                    index = 0;
+                    imgList.style.left = '15px';
+                    imgList.style.transition = '';
+                }
+                setArch(index);
+            }, 2000);
+        }
+        autoPlay(count);
+
+        //设置导航点样式
+        function setArch(num) {
+            if (num >= archLis.length) {
+                num = 0;
+            }
+            for (var i = 0; i < archLis.length; i++) {
+                archLis[i].style.backgroundColor = '';
+            }
+            archLis[num].style.backgroundColor = 'rgba(255, 0, 0, .6)';
+        }
+
+        //设置导航点跳转
+        for (let i = 0; i < archLis.length; i++) {
+            archLis[i].onclick = function () {
+                setArch(i);
+                clearInterval(timer);
+                imgList.style.left = 15 - 315 * i + 'px';
+                autoPlay(i);
+            }
+        }
+    </script>
+</body>
+
+</html>

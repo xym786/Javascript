@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn0">button</button>
+    <button id="btn" onmousemove="alert('123');">123</button>
+    <!-- 这种写法我们叫做结构和行为耦合 不方便维护 不推荐使用 
+        可以为按钮的对应事件绑定处理函数的事件的形式来响应事件 当事件被触发时 其对应的函数将被调用 -->
+<script>
+    /*
+    事件的简介
+    文档或浏览器窗口中发生的一些特定的交互瞬间
+    JS与HTML间交互 通过事件实现
+    事件 用户和浏览器之间的交互行为
+    如：点击按钮 鼠标移动 关闭窗口...
+    我们可以在事件对应的属性中设置一些JS代码
+    这样当事件触发时 这些代码就会执行
+    button onclick单击一次 ondblclick双击一次 onmousemove鼠标靠近
+    */
+</script>
+<script>
+    //获取按钮事件
+    var btn0 = document.getElementById('btn0');
+    //绑定单击事件
+    btn0.onclick = function() { //btn0是一个对象
+        //像这种单击事件绑定的函数 我们成为单击响应函数
+        alert('clicked');
+    }
+</script>
+</body>
+</html>

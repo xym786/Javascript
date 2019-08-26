@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box {
+        margin: 100px auto;
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span>全选练习</span>
+        全选<input type="checkbox" name="" id="checkedAllBox">
+        <br />
+        足球<input type="checkbox" name="items" id="" value="足球">
+        篮球<input type="checkbox" name="items" id="" value="篮球">
+        羽毛球<input type="checkbox" name="items" id="" value="羽毛球">
+        乒乓球<input type="checkbox" name="items" id="" value="乒乓球">
+        <br />
+        全选<input type="checkbox" name="" id="checkedAllBtn">
+        全不选<input type="checkbox" name="" id="checkedNoBtn">
+        反选<input type="checkbox" name="" id="checkedRevBtn">
+        <button name="sendBtn">提交</button>
+    </div>
+<script>
+    var items = document.getElementsByName('items');
+    function fun(idStr, fun) {
+        var btn = document.getElementById(idStr);
+        btn.onclick = fun;
+    }
+
+    //1.全选按钮
+    fun('checkedAllBtn', function() {
+        for(var i = 0; i < items.length; i++) {
+            items[i].checked = checkedAllBtn.checked;
+        }
+        checkedAllBox.checked = checkedAllBtn.checked;
+    });
+
+    fun('checkedAllBox', function() {
+        for(var i = 0; i < items.length; i++) {
+            items[i].checked = checkedAllBox.checked;
+        }
+        checkedAllBtn.checked = checkedAllBox.checked;
+    });
+
+    //2.全不选按钮
+    fun('checkedNoBtn', function() {
+        for(var i = 0; i < items.length; i++) {
+            items[i].checked = false;
+        }
+        if(checkedNoBtn.checked) {
+            checkedAllBtn.checked = false;
+            checkedAllBox.checked = false;
+        }
+    });
+
+    //3.反选按钮
+    fun('checkedRevBtn', function() {
+        checkedAllBox.checked = true;
+        checkedAllBtn.checked = true;
+        for(var i = 0; i < items.length; i++) {
+            items[i].checked = !items[i].checked;
+            if(!items[i].checked) {
+                checkedAllBox.checked = false;
+                checkedAllBtn.checked = false;
+            }
+
+        }
+    });
+
+    //4.提交按钮
+    var sendBtn = document.getElementsByName('sendBtn')[0];
+    sendBtn.onclick = function() {
+        for(var i = 0; i < items.length; i++) {
+            if(items[i].checked) {
+                alert(items[i].value);
+            }
+        }
+    };
+
+    //如果4个多选框全选中 则全选按钮也选中 4个多选框中有没选中的全选按钮也不应该选中
+    for(var i = 0; i < items.length; i++) {
+        items[i].onclick = function() {
+            checkedAllBtn.checked = true;
+            checkedAllBox.checked = true;
+            for(var j = 0; j < items.length; j++) {
+                if(!items[j].checked) {
+                    checkedAllBtn.checked = false;
+                    checkedAllBox.checked = false;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

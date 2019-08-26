@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //工厂的方式创建对象 可大批创建对象
+    function createObj(name, age, gender) {
+        //创建新对象
+        var obj = new Object();
+        //向对象中添加属性
+        obj.name = name;
+        obj.age = age;
+        obj.gender = gender;
+        obj.sayName = function() {
+            console.log(obj.name);
+        }
+        return obj;
+    }
+    //要创建对象时 调用函数并传入参数即可
+    var obj2 = createObj('su', 18, 'male');
+    var obj3 = createObj('susun', 19, 'female');
+    console.log(obj2);
+    console.log(obj3);
+</script>
+</body>
+</html>

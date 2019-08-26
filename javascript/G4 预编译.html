@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    /*
+    函数预编译 函数在执行前 先逐篇扫描文档 检查语法错误(语法分析)
+    之后 进行预编译 最后解释执行
+    预编译中：1.函数声明整体提升
+        2.变量声明提升(变量赋值不会作提升)
+    预编译前奏：
+    imply global 暗示全局变量 即任何变量 未声明就赋值 此变量为全局对象所有
+    一切声明的全局变量 全是window的属性 window是全局的域
+    */
+
+
+    function test() {
+        var a = b = 123;
+        /*
+        赋值操作从右到左进行 
+        1.123赋给b
+        2.声明a
+        3.b赋给a
+        这个过程中 b未声明便赋值 b是全局对象 a是局部变量
+        */
+    }
+
+    function fu(a) {
+        console.log(a); //funa
+        var a = 123;
+        console.log(a); //123
+        function a() {}
+        console.log(a); //123
+        var b = function() {};
+        console.log(b); //fun
+        function d() {}
+    }
+    //fu();
+    /*
+    OA {
+        a: funa 123
+        b: un fun
+        d: fun
+    }
+    */
+
+    function test(a, b) {
+        console.log(a); //funa
+        console.log(b); //2
+        var b = 234;
+        console.log(b); //234
+        a = 123;
+        console.log(a); //123
+        function a() {}
+        var a;
+        b = 234;
+        var b = function() {};
+        console.log(a); //123
+        console.log(b); //fun
+    }
+    //test(1, 2);
+    /*
+    OA {
+        a: funa 123
+        b: 2 234 fun
+    }
+    */
+
+    /*
+    预编译完毕后 运行函数 运行函数时 预编译过程中执行过的步骤不再执行(如变量提前声明) (有自己的变量优先使用自己的变量)
+    在全局中 也有预编译过程 生成GO(Global Object)对象 并且GO对象在AO对象之前生成 GO === window
+    */
+
+    global = 100;
+    function fn2() {
+        console.log(global); //un
+        global = 200;
+        console.log(global); //200
+        var global = 300;
+    }
+    //fn2();
+    var global;
+    /*
+    GO {
+        global: 100
+        fn2: funfn2
+    }
+    AO {
+        global: 200 300
+    }
+    */
+
+    /*function bar() {
+        return foo;
+        foo = 100;
+        function foo() {
+            var foo = 11;
+        }
+    }
+    console.log(bar()); //funfoo*/
+
+    console.log(bar()); //11
+    function bar() {
+        foo = 10;
+        function foo() {}
+        var foo = 11;
+        return foo;
+    }
+    /*
+    预编译过程：
+    预编译发生在函数执行前一刻
+    1.创建AO对象
+    2.找形参和变量声明 将变量和形参名作为AO属性名 值为undefined
+    3.将实参值和形参相统一
+    4.在函数体内找函数声明 将函数体赋予函数变量
+    */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

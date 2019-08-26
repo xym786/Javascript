@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1.自定义type 判断数据类型
+        function type(obj) {
+            var template = {
+                '[object Object]': 'object',
+                '[object Array]': 'array',
+                '[object Number]': 'object_number',
+                '[object Boolean]': 'object_boolean',
+                '[object String]': 'object_string'
+            };
+            if (typeof (obj) == 'object') {
+                if (obj === null) {
+                    return 'null';
+                } else {
+                    var str = Object.prototype.toString.call(obj);
+                    return template[str];
+                }
+            } else {
+                return typeof (obj);
+            }
+        }
+        //console.log(type(new Number(123)));
+
+        //2.数组去重方法 写在数组原型上 (利用一个对象不能有重复的属性名的特性) (哈希)
+        Array.prototype.unique = function () {
+            var obj = {};
+            var newArr = [];
+            for (var i = 0; i < this.length; i++) {
+                if(!obj[arr[i]]) {
+                    obj[arr[i]] = 'abc';
+                    newArr.push([arr[i]]);
+                }
+            }
+            return newArr;
+        };
+        
+        var arr = [1, 2, 3, 4, 4, 0, 0, 5, 5, 6, 2, 1];
+        console.log(arr.unique());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #box {
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+        position: absolute;
+    }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+    /*
+    拖拽box1元素
+    拖拽流程：1.当鼠标在拖拽元素上按下时 开始拖拽 onmousedown
+        2.当鼠标移动时 被拖拽元素根据鼠标移动 onmousemove
+        3.当鼠标松开时 被拖拽元素固定在当前位置 onmouseup
+    */
+    //为box绑定鼠标按下事件 按下时 开始拖拽
+    var box = document.getElementById('box');
+    box.onmousedown = function(event) {
+        event = event || window.event; //兼容性
+        /*
+        计算box的偏移量
+        水平 鼠标.clientX - box.offsetLeft
+        垂直 鼠标.clientY - box.offsetTop
+        */
+        var ol = event.clientX - box.offsetLeft;
+        var ot = event.clientY - box.offsetTop;
+        document.onmousemove = function(event) {
+            event = event || window.event;
+            //获取鼠标坐标并修改box位置
+            box.style.top = event.clientY - ot + 'px';
+            box.style.left = event.clientX - ol + 'px';
+        }
+        /*
+        松开时 被拖拽元素固定在当前位置 即取消document的onmousemove
+        当设置在box松开时生效时 如果box被盖住 就无法生效了 所以要给document绑定
+        */
+        document.onmouseup = function() {
+            document.onmousemove = null;
+            //取消document的onmouseup
+            document.onmouseup = null;
+        };
+    }
+</script>
+</body>
+</html>

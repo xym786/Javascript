@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    定义一个求两数之和的参数 可以在()中指定一个或多个形参 
+    多个形参之间用 , 隔开 声明形参相当于在函数内部声明了变量但没赋值
+    */
+    var sum1 = null;
+    function sum(a, b) {
+        sum1 = a + b;
+    }
+
+    //在调用函数时 可以在()中指定实参 实参会赋值给对应形参
+    sum(1, 2);
+    console.log(sum1);
+
+    /*
+    在调用函数时 解析器不会检查实参的类型 应注意是否可能接收到非法参数
+    有可能需要对函数的类型进行检查
+    */
+    sum(123, 'hello');
+    console.log(sum1);
+    sum(true, false);
+    console.log(sum1);
+    //调用函数时 解析器不检查实参数量 多余实参不被赋值
+    sum(123, 456, 'su', true);
+    console.log(sum1);
+    //如果实参的数量少于形参的数量 则没有对应实参的形参是undefined 结果将是NaN
+    sum(123);
+    console.log(sum1);
+    //函数的参数可以是任意数据类型
+</script>
+</body>
+</html>

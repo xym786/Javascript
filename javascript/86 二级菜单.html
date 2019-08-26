@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-size: 14px;
+    }
+    section {
+        margin: 0 auto;
+        width: 120px;
+        padding: 3px;
+        border-radius: 5px;
+    }
+    section div {
+        margin-bottom: 5px;
+        overflow: hidden;
+    }
+    section:last-child {
+        margin-bottom: 0;
+    }
+    .menuSpan {
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        color: #f10245;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #333;
+        display: block;
+        cursor: pointer;
+    }
+    section p {
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        background-color: rgb(114, 235, 215);
+        text-align: center;
+    }
+    section p:first-of-type {
+        border-radius: 10px 10px 0 0;
+    }
+    section p:last-of-type {
+        border-radius: 0 0 10px 10px;
+    }
+    section {
+        background-color: orange;
+    }
+    .collapse {
+        height: 25px;
+    }
+    </style>
+
+    <script src="84_1 tool.js"></script>
+
+    <script>
+    window.onload = function() {
+        /*
+        每个菜单都是div 当div具有collapse类时 div是折叠状态
+        当div无collapse类时 div展开 点击菜单 切换菜单的显示状态
+        */
+
+        //获取所有class为menuSpan的元素 并为其绑定单击响应函数
+        var menuSpan = document.getElementsByClassName('menuSpan');
+        //定义一个变量 保存当前打开的菜单
+        var openDiv = menuSpan[0].parentNode;
+        for(var i = 0; i < menuSpan.length; i++) {
+            menuSpan[i].onclick = function() {
+                //this代表当前点击的span 获取当前span父元素即为当前div
+                var parentDiv = this.parentNode;
+                
+                toggleMenu(parentDiv);
+
+                //点击两次相同元素 会产生bug 判断openDiv和parentDiv是否相同
+                if(openDiv != parentDiv && !hasClass(openDiv, 'collapse')) {
+                    //toggleClass(openDiv, "collapse");
+                    /*
+                    打开菜单之后 应关闭之前打开的菜单
+                    为了统一处理动画过度效果 统一使用toggleClass 并且
+                    */
+                    toggleMenu(openDiv);
+                }
+                openDiv = parentDiv;
+            };
+        }
+
+        function toggleMenu(obj) {
+            var start = getStyle(obj, 'height');
+            //alert(start);
+            toggleClass(obj, 'collapse');
+            var end = getStyle(obj, 'height');
+            //alert(end);
+            obj.style.height = start;
+            move(obj, parseInt(end), 10, "height", function() {
+                obj.style.height="";
+            });
+        }
+    }
+    </script>
+</head>
+<body>
+    <section>
+        <div>
+            <span class="menuSpan">二级菜单</span>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+        </div>
+        <div class="collapse">
+            <span class="menuSpan">二级菜单</span>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+        </div>
+        <div class="collapse">
+            <span class="menuSpan">二级菜单</span>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+        </div>
+        <div class="collapse">
+            <span class="menuSpan">二级菜单</span>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+        </div>
+        <div class="collapse">
+            <span class="menuSpan">二级菜单</span>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+            <p>二级菜单内容</p>
+        </div>
+    </section>
+</body>
+</html>

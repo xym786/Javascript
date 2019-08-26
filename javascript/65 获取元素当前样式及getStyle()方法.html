@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+    }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <br />
+    <button id="btn01">click1</button>
+<script>
+    //点击按钮后获取box1样式
+    var box1 = document.getElementById('box1');
+    var btn01 = document.getElementById('btn01');
+    btn01.onclick = function() {
+        /*
+        获取元素当前显示的样式 语法：元素.currentStyle.样式名(只有IE支持)
+        他可以读取正在显示的样式(不一定是样式表/内联样式) 谁生效获取谁
+        如果当前元素没有设置样式 则会读取他的默认值
+        */
+
+        /*
+        在其他浏览器中可以使用getComputedStyle() 这个方法来获取元素当前样式(IE9以上支持)
+        这个方法是window的方法 可直接使用
+        需要两个参数：1.要获取样式的元素
+                    2.可传递一个伪元素 一般都传null
+        该方法会返回一个对象 对象中封装了元素的样式
+        要读取对象中的具体样式 可以使用 对象.样式名
+        如果获取的样式没有设置 则会获取其真实的值 而不是默认值
+        比如：没有设置width 不会获取auto 而是一个长度
+        */
+        /*var result = box1.currentStyle || getComputedStyle(box1, null);
+        alert(result.width);*/
+
+        //可以定义一个函数 来获取指定元素的当前样式
+        function getStyle(obj, name) {
+            //函数中 调用赋值给形参的实参时 可以使用[形参]的方式 []中传递的是变量
+            /*
+            这种方法和下两种方式效果一致 无本质区别
+            但是不建议使用 IE11中两种方法都有 而此法中优先使用currentStyle 而建议统一使用getComputedStyle()
+            */
+            /*if(obj.currentStyle) {
+                return obj.currentStyle[name];
+            }else {
+                return getComputedStyle(obj, null)[name];
+            }*/
+            
+            //前面要加上window 因为属性未定义返回undefined 而变量未定义会报错
+            if(window.getComputedStyle) {
+                return getComputedStyle(obj, null)[name];
+            }else {
+                return obj.currentStyle[name];  //IE8的方式 没有getComputedStyle()方法
+            }
+
+            //return obj.currentStyle ? obj.currentStyle[name] : getComputedStyle(obj, null)[name];
+            /*
+            通过currentStyle和getComputedStyle()读取的样式都是只读的
+            不能修改 想要修改 必须通过style属性
+            currentStyle只支持IE浏览器 getComputedStyle()支持大部分浏览器
+            要使所有浏览器都可执行getStyle()方法 需要判断浏览器版本(即判断当前浏览器有哪种方法)
+            */
+        }
+        alert(getStyle(box1, 'width'));
+    }
+</script>
+</body>
+</html>

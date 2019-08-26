@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // == 比较两个值是否相等
+    console.log(1 == 1);
+    //使用 == 比较两值是否相等时 如两个值类型不同 则要转换成相同类型 再进行比较 大部分转换为数字型
+    console.log(1 == '1');  
+    console.log(true == '1');
+    // 特殊情况 null == 0 时 并不是转换为数字 结果为false
+    console.log(null == 0);  
+    //undefined衍生自null 做相等判断时 返回true
+    console.log(null == undefined);
+    //NaN不和任何数值相等 包括它本身
+    console.log(NaN == NaN);
+    //可通过isNaN()判断一个值是否是NaN
+    var b = NaN;
+    console.log(isNaN(b));
+</script>
+<script>
+    // != 判断两个值是否不相等
+    console.log(10 != 5);
+    console.log('abc' != 'abc'); // 比较两个字符串是否相等 比较的是unicode编码
+    //不相等也会对变量进行自动的类型转换 转换后相等返回false
+</script>
+<script>
+    /*
+    === 全等 和 == 相类似
+    不同的是不进行类型转换 两个值的类型不同 直接返回false
+    */
+    console.log('123' === 123);
+</script>
+<script>
+    /*
+    !== 不全等 和 != 类似
+    不进行类型转换 两个值类型不同 直接返回true
+    */
+    console.log(1 !== '1');
+</script>
+</body>
+</html>

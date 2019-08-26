@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    使用for...in语句
+    语法 for(var n in 对象) {
+        console.log(n);     //输出属性
+        console.log(obj[n]);    //输出属性值
+    }
+    for...in语句 对象有几个属性 循环执行几次
+    每次执行时 会将对象中的属性赋值给变量
+    */
+    var obj = {
+        name: 'su',
+        age: 18,
+        address: 'Dalian'
+    }
+    for(var n in obj) {
+        console.log(n);
+        console.log(obj[n]);
+    }
+</script>
+</body>
+</html>

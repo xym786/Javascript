@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+<script>
+    /*
+    Documnet Object Model 文档对象模型
+    JS中通过DOM对HTML文档(整个HTML网页文档/文档对象)进行操作
+    对象：网页中每一个部分都转换为一个对象
+    模型：使用模型表示对象间关系 方便我们获取对象
+    模型html
+                文档        节点(node)与节点之间的关系
+                html
+        head            body
+        title           a
+        文本节点         文本节点
+
+    节点：构成html最基本的单元
+    常用节点分为4类：
+    1.文档节点：整个html文档
+    2.元素节点：html文档中的html标签
+    3.属性节点：元素的属性
+    4.文本节点：html中的文本内容
+
+                元素节点
+    <p id="pid">This is a paragraph.</p>
+        属性节点       文本节点
+
+    节点的属性
+
+                nodeName    nodeType    nodeValue
+    文档节点     #document      9          null
+    元素节点       标签名        1          null
+    属性节点       属性名        2         属性值
+    文本节点       #text        3         文本内容
+
+    通过nodeType可以判断节点类型
+    */
+</script>
+<script>
+    //浏览器已经为我们提供了文档节点对象 这个对象是window属性 可以在网页中直接使用 文档节点 代表整个网页
+    console.log(document);
+    //获取到button按钮
+    var btn = document.getElementById('btn');
+    console.log(btn);
+    //修改按钮的文字
+    btn.innerHTML = 'button';
+</script>
+</body>
+</html>

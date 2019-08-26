@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <script>
+    window.onload = function() {
+        var btn = document.getElementById('btn');
+        var allA = document.getElementsByTagName('a');
+        var ul = document.getElementsByTagName('ul')[0];
+        //遍历所有a 并为所有a绑定单击响应函数 比较麻烦 这种做法只能为已有a设置事件 新加的a必须重新绑定
+        /*for(var i = 0; i < allA.length; i++) {
+            allA[i].onclick = function() {
+                alert('clicked');
+            }
+        }*/
+
+        /*
+        我们希望只绑定一次事件 即可应用到多个元素上 即使元素时后添加的
+        我们可以尝试绑定给共同的祖先元素
+
+        事件的委派 将事件统一绑定给元素共同的祖先元素
+        这样当后代元素上的事件被触发时 会一直冒泡到祖先元素 从而通过祖先元素的响应函数来处理事件
+        事件委派利用了冒泡 通过委派可以减少事件绑定的次数 提高程序性能
+
+        问题ul中不只有a 还有li 点击ul和li也会触发响应函数
+        如果触发对象不是我们期望的元素 则不执行
+        */
+        ul.onclick = function(event) {
+            //event.target表示触发事件的对象
+            if(event.target.className == 'link') {  //判断是否是期望的元素
+                alert('clicked');
+            }
+        }
+        //设置btn 每点击一次 新增一个a
+        btn.onclick = function() {
+            var li = document.createElement('li');
+            li.innerHTML = '<a href="#" class="link">link</a>';
+            ul.appendChild(li);
+        };
+    };
+    </script>
+<body>
+    <ul>
+        <li> <a href="#" class="link">link</a> </li>
+        <li> <a href="#" class="link">link</a> </li>
+        <li> <a href="#" class="link">link</a> </li>
+        <li> <a href="#" class="link">link</a> </li>
+        <li> <a href="#" class="link">link</a> </li>
+    </ul>
+    <button id="btn">click</button>
+</body>
+</html>

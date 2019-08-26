@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta username="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            margin: 100px auto;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+
+        }
+
+        table tr {
+            height: 30px;
+        }
+
+        table td {
+            line-height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        table:nth-child(2) {
+            width: 800px;
+            border: 0 solid #fff;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>序号</td>
+            <td><input type="text" id="ind"></td>
+        </tr>
+        <tr>
+            <td>姓名</td>
+            <td><input type="text" id="username"></td>
+        </tr>
+        <tr>
+            <td>年龄</td>
+            <td><input type="text" id="age"></td>
+        </tr>
+        <tr>
+            <td>薪水</td>
+            <td><input type="text" id="salary"></td>
+        </tr>
+        <tr>
+            <td>
+                <button id="btn">添加信息</button>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <table>
+        <tbody id="tbody">
+            <tr>
+                <td>序号</td>
+                <td>姓名</td>
+                <td>年龄
+                    <button id="sort">排序</button>
+                </td>
+                <td>薪水</td>
+                <td>操作</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Susun</td>
+                <td class="age">20</td>
+                <td>6000</td>
+                <td>
+                    <a href="#">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Chelly</td>
+                <td class="age">16</td>
+                <td>12000</td>
+                <td>
+                    <a href="#">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        //获取对象
+        function getObj(obj) {
+            return document.getElementById(obj);
+        }
+        var ind = getObj('ind');
+        var username = getObj('username');
+        var age = getObj('age');
+        var salary = getObj('salary');
+        var btn = getObj('btn');
+        var tbody = getObj('tbody');
+
+        function createTds(content) {
+            var td = document.createElement('td');
+            td.innerHTML = content;
+            return td;
+        }
+
+        btn.onclick = function () {
+            //制造td节点
+            var td1 = createTds(ind.value);
+            var td2 = createTds(username.value);
+            var td3 = createTds(age.value);
+            var td4 = createTds(salary.value);
+            var td5 = document.createElement('td');
+            td5.innerHTML = '<a href="#">删除</a>';
+
+            //将td节点绑定到tr上 并进一步绑定到tbody上
+            var tr = document.createElement('tr');
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            td3.setAttribute('class', 'age');
+            tr.appendChild(td4);
+            tr.appendChild(td5);
+            tbody.appendChild(tr);
+
+            //重新绑定a的点击事件
+            var allA = document.getElementsByTagName('a');
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].onclick = del;
+            }
+        }
+
+        //为本来就有的a绑定点击事件
+        var allA = document.getElementsByTagName('a');
+        for (var i = 0; i < allA.length; i++) {
+            allA[i].onclick = del;
+        }
+
+        //定义删除事件行为
+        function del() {
+            var temp = confirm('确认删除吗？');
+            if (temp) {
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+            }
+        }
+
+        var sort = getObj('sort');
+        sort.onclick = function () {
+            //获取所有age并存入数组中
+            var age = document.querySelectorAll('.age');
+            var arr = [];
+            for (var i = 0; i < age.length; i++) {
+                arr.push(age[i]);
+            }
+
+            //对age进行排序
+            arr.sort(function (a, b) {
+                if (a.innerHTML >= b.innerHTML) {
+                    return a.innerHTML - b.innerHTML;
+                } else {
+                    return a.innerHTML - b.innerHTML;
+                }
+            });
+
+            //表格重绘
+            for (var i = 0; i < arr.length; i++) {
+                //序号重绘
+                arr[i].previousElementSibling.previousElementSibling.innerHTML = i + 1;
+                tbody.appendChild(arr[i].parentNode);
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #box {
+        top: 200px;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: pink;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        var box = document.getElementById('box');
+        /*
+        onkeydown 按键按下(一直按键不放手 会一直触发)
+        onkeyup 按键松开(只触发一次)
+        键盘事件一般绑定给可获取焦点的对象 或者 document
+        当onkeydown连续触发时 第一次 第二次会间隔稍长一些 之后其他的会非常快 这是为了防止误操作
+        */
+
+        //使div根据不同方向键向不同方向移动
+        document.onkeydown = function(event) {
+            event = event || window.event;
+            //定义一个变量 表示移动速度
+            var speed = 10;
+            //用户按住alt 速度加快
+            if(event.altKey) {
+                speed = 100;
+            }
+            /*
+            可通过keyCode获取按键编码 判断按下了哪个按键(全等判断)
+            keyCode对象中还还提供了以下几种属性
+            altKey ctrlKey shiftKey
+            分别用来判断alt ctrl shift是否被按下 按下返回true 否则返回false
+            */
+            switch(event.keyCode) {
+                case 37:
+                    box.style.left = box.offsetLeft - speed + 'px';
+                    break;
+                case 38:
+                    box.style.top = box.offsetTop - speed + 'px';
+                    break;
+                case 39:
+                    box.style.left = box.offsetLeft + speed + 'px';
+                    break;
+                case 40:
+                    box.style.top = box.offsetTop + speed + 'px';
+                    break;
+            }
+
+            //判断alt和y是否都被按下 event.keyCode === 89 && event.altKey
+
+            var input = document.getElementById('input');
+            input.onkeydown = function(event) {
+                /*
+                在文本框中输入内容 属于onkeydown默认行为
+                取消行为 则输入内容 不会出现在文本框中(return false) 键盘布局不同 可能失效
+                */
+
+                //使input不能输入数字(不包括小键盘数字按键)
+                event = event || window.event;
+                if(event.keyCode >= 48 && event.keyCode <= 57) {
+                    return false;
+                }
+            };
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+    <input type="text" id="input">
+</body>
+</html>

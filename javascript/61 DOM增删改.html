@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        margin: 100px auto;
+        width: 600px;
+        background-color: #ccc;
+    }
+    .fl {
+        float: left;
+    }
+    .box1 {
+        margin-right: 20px;
+        padding: 15px;
+        border: 1px solid #333;
+    }
+    .box1 li {
+        margin-right: 10px;
+        padding: 10px;
+        float: left;
+        border: 1px solid deeppink;
+    }
+    .box2 {
+        border: 1px solid #333;
+        padding: 15px;
+    }
+    .box2 button {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    li {
+        list-style: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="box1 fl">
+        <ul id="city">
+            <li id="bj">北京</li>
+            <li>大连</li>
+            <li>山西</li>
+            <li>上海</li>
+        </ul>
+    </div>
+    <div class="box2 fl">
+            <ul>
+                <li> <button id="btn01">创建一个广州节点，添加到#city下</button> </li>
+                <li> <button id="btn02">创建一个广州节点，插入到#bj前</button> </li>
+                <li> <button id="btn03">使用广州节点代替#bj节点</button> </li>
+                <li> <button id="btn04">删除#bj节点</button> </li>
+                <li> <button id="btn05">读取#city的html代码</button> </li>
+                <li> <button id="btn06">修改#bj内html代码</button> </li>
+                <li> <button id="btn07">向#city中添广州节点</button> </li>
+            </ul>
+        </div>
+<script>
+    /*
+    1.创建一个广州节点 添加到#city下
+    document.createElement() 可用于创建一个元素节点对象
+    他需要一个标签名作参数 将根据该标签名创建对象
+    并将被创建的对象作返回值返回
+    */
+    var btn01 = document.getElementById('btn01');
+    btn01.onclick = function() {
+        //创建一个元素节点li
+        var li = document.createElement('li');
+        /*
+        document.createTextNode() 用于创建一个文本节点
+        需要一个文本内容作参数 会根据该内容创建文本节点
+        并将新的节点作返回值返回
+        */
+        var gzText = document.createTextNode('广州');
+        /*
+        appendChild() 将新的节点添加到指定节点
+        向父节点中添加一个子节点 用法：父节点.appendChild(子节点)
+        */
+        li.appendChild(gzText);
+        //获取id为city的节点
+        var city = document.getElementById('city');
+        //将广州节点添加到city下
+        city.appendChild(li);
+    }
+
+    //2.创建一个广州节点 插入到#bj前
+    var btn02 = document.getElementById('btn02');
+    btn02.onclick = function() {
+        //创建广州节点
+        var li = document.createElement('li');
+        li.innerHTML = '广州';
+        //获得#bj节点
+        var bj = document.getElementById('bj');
+        /*
+        insertBefore() 可以在指定的节点前插入新的子节点
+        语法：父节点.insertBefore(新节点, 旧节点)
+        */
+        //在#bj节点前插入广州节点
+        bj.parentNode.insertBefore(li, bj);
+    }
+
+    //3.使用广州节点代替#bj节点
+    var btn03 = document.getElementById('btn03');
+    btn03.onclick = function() {
+        var li = document.createElement('li');
+        li.innerHTML = '广州';
+        var bj = document.getElementById('bj');
+        /*
+        replaceChild() 可以用指定的子节点替换已有的
+        用法：父节点.replaceChild(新节点, 旧节点)
+        */
+        bj.parentNode.replaceChild(li, bj);
+    }
+
+    //4.删除#bj节点
+    var btn04 = document.getElementById('btn04');
+    btn04.onclick = function() {
+        var bj = document.getElementById('bj');
+        /*
+        removeChild() 可以删除一个子节点
+        语法：父节点.removeChild(子节点)
+        */
+        bj.parentNode.removeChild(bj);  //不再单独获取city 更常用 语法：子节点.parentNode.removeChild(子节点)
+    }
+
+    //5.读取#city的html代码
+    var btn05 = document.getElementById('btn05');
+    btn05.onclick = function() {
+        var city = document.getElementById('city');
+        alert(city.innerHTML);
+    }
+
+    //6.修改#bj内html代码
+    var btn06 = document.getElementById('btn06');
+    btn06.onclick = function() {
+        var bj = document.getElementById('bj');
+        bj.innerHTML = '深圳';
+    }
+
+    //7.向#city中添广州节点
+    var btn07 = document.getElementById('btn07');
+    btn07.onclick = function() {
+        var li = document.createElement('li');
+        li.innerHTML = '广州';
+        /*var city = document.getElementById('city');
+        city.innerHTML += '<li>广州</li>';*/  /*
+                                            使用innerHTML也可以完成DOM增删改的相关操作 但是会影响整个city节点 
+                                            一般2种方法混合使用 如上方法 只影响广州一个节点
+                                            */
+        city.appendChild(li);
+    }
+</script>
+</body>
+</html>

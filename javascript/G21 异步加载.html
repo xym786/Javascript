@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        html加载过程
+        浏览器发出请求 向服务器请求HTML页面
+        服务器返回响应 响应的内容是一个字符串（HTML文档）
+        浏览器对字符串进行解析
+        
+        加载domTree 解析domTree(深度优先) 某一节点先加载后解析
+        domTree完成是所有节点解析完成 不是加载完成
+        cssTree完成后 domTree + cssTree = randerTree(渲染树)
+
+        添加节点会导致domTree重排 应尽量避免
+        reflow重排(低效过程): dom节点增 删 改(宽 高 位置) 查(offsetWidth offsetLeft 重排以获取实时值)
+        repaint重绘: 修改背景色 背景图 字体色 只修改部分 效率浪费较少
+        */
+
+        /*
+        异步加载JS: JS HTML异步加载(JS会修改HTML 不能在HTML生成时加载)
+        JS加载的缺点: 加载工具方法没必要阻塞文档 过多JS加载会影响效率
+        网速出问题 网络会等JS加载而不进行后续工作 有些工具应按需加载 用到再加载
+        */
+
+        /*
+        JS异步方法:
+        1.defer   <script src='***' defer='defer'><script> 但要dom全解析完才会执行 只有IE9.0及以下可用 也可以将代码写在script标签内
+        2.aysnc W3C标准方法 IE9.0及以上 加载完成后立即执行 只执行外部脚本
+        3.通过添加标签的方式
+        */
+
+    </script>
+</body>
+
+</html>

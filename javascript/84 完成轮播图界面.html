@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            margin: 100px auto;
+            width: 420px;
+            height: 300px;
+            position: relative;
+            padding: 10px 0;
+            overflow: hidden;
+            background-color: yellowgreen;
+        }
+
+        #imgList {
+            top: 10px;
+            left: 0;
+            position: absolute;
+        }
+
+        #imgList li {
+            margin: 0 10px;
+            float: left;
+            list-style: none;
+        }
+
+        #imgList img {
+            width: 400px;
+            height: 300px;
+        }
+
+        #navList {
+            bottom: 15px;
+            position: absolute;
+        }
+
+        #navList a {
+            margin: 0 5px;
+            width: 15px;
+            height: 15px;
+            display: block;
+            float: left;
+            background-color: deeppink;
+            opacity: 0.6;
+        }
+    </style>
+
+    <script src="84_1 tool.js"></script>
+
+    <script>
+        window.onload = function () {
+            var outer = document.getElementById('outer');
+            var imgList = document.getElementById('imgList');
+            var img = document.querySelectorAll('#imgList img');
+            var navList = document.querySelectorAll('#navList')[0];
+            var allA = document.querySelectorAll('#navList a');
+
+            //使imgList的宽度根据img的个数而变化
+            imgList.style.width = 420 * img.length + 'px';
+            //无论navList中有多少个a navList都会保持居中
+            navList.style.left = (outer.offsetWidth - navList.offsetWidth) / 2 + 'px';
+
+            //allA[0].style.backgroundColor = 'black';
+
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].num = i;
+                allA[i].onclick = function () {
+                    var index = this.num;
+                    /*imgList.style.left = -420 * index + 'px';*/
+                    setA(index);
+                    clearInterval(timer);
+                    move(imgList, -420 * index, 20, "left", function () {
+                        autoPlay();
+                    });
+                };
+            }
+
+
+            function setA(index) {
+                var aIndex = index;
+                if (aIndex >= img.length - 1) {
+                    aIndex = 0;
+                    imgList.style.left = 0 + 'px';
+                }
+                for (var i = 0; i < allA.length; i++) {
+                    allA[i].style.backgroundColor = '';
+                }
+                allA[aIndex].style.backgroundColor = 'black';
+            }
+            setA(0);
+
+            var timer;
+            autoPlay();
+
+            function autoPlay() {
+                index = 0;
+                var autoIndex = 0;
+                timer = setInterval(function () {
+                    index++;
+                    if (index >= img.length) {
+                        index = 0;
+                    }
+                    move(imgList, -420 * index, 20, "left", function () {
+                        setA(index);
+                    });
+                }, 2000);
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li> <img src="images/1.jpg" alt=""> </li>
+            <li> <img src="images/2.png" alt=""> </li>
+            <li> <img src="images/3.png" alt=""> </li>
+            <li> <img src="images/4.png" alt=""> </li>
+            <li> <img src="images/5.jpg" alt=""> </li>
+            <li> <img src="images/1.jpg" alt=""> </li>
+        </ul>
+        <div id="navList">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+</body>
+
+</html>

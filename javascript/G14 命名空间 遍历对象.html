@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        管理变量 防止污染全局变量 适用于模块化开发
+        一般入口函数的命名：init*** 是程序开始执行的位置
+        闭包形式保存的功能 可以复用
+        */
+        //模拟JQ中连续调用
+        var obj = {
+            printA: function() {
+                console.log('a');
+                return this;
+            },
+            printB: function() {
+                console.log('b');
+                return this;
+            },
+            printC: function() {
+                console.log('c');
+                return this;
+            },
+            printD: function() {
+                console.log('d');
+                return this;
+            }
+        };
+        //obj.printA().printB().printC().printD();
+
+        /*
+        属性名拼接
+        调用对象方法的两种方式：
+        1.obj.name; //系统会自动进行一步转换 obj['name']
+        2.obj['name'] 更灵活 可拼接 可传变量
+        */
+        var deng = {
+            wife1: 'Liu',
+            wife2: 'Song',
+            wife3: 'Zhang',
+            sayWife: function(num) {
+                console.log(this['wife' + num]);
+            }
+        }
+        
+        // for(var prop in deng) {
+        //     //console.log(deng.prop); //会报错 没有将prop当做变量
+        //     console.log(deng[prop]);
+        // }
+
+        //对象中可能会有继承来的属性 遍历自己的属性需要加一步判断
+        for(var prop in deng) {
+            if(deng.hasOwnProperty(prop)) {
+                console.log(deng[prop]);
+            }
+        }
+    </script>
+</body>
+
+</html>

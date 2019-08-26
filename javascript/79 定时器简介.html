@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box {
+        font-size: 60px;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        /*
+        JS程序执行速度非常快 如果希望一段程序可以每间隔一段时间执行一次
+        可以使用定时调用 setInterval() 调用定时器
+        可以将一段函数每隔一段时间调用一次
+        参数：1.回调函数 该函数每隔一段时间被调用一次
+            2.每次调用时间间隔 单位毫秒
+            3.返回值 会返回一个Number类型的数据 这个数字作为定时器的唯一标识
+            4.clearTnterval()可以关闭一个定时器
+            此方法中要一个定时器的标识作参数 这样将关闭标识对应的定时器
+        */
+        var box = document.getElementById('box');
+        var num = 0;
+        setInterval(function() {
+            box.innerHTML = num++;
+        }, 1000);
+    };
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>

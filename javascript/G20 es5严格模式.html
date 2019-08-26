@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        浏览器执行方法基于es3.0 + es5.0的新增方法(有冲突时执行es3.0)
+        在es5.0严格模式下 es3.0和es5.0再冲突 执行es5.0
+        严格模式不兼容es3.0不规范语法：
+        1.不支持with arguments.callee func.caller
+        2.变量赋值前必须声明 局部this必须被赋值
+        3.使用字符串表达式启动 防止在低版本浏览器中报错
+        4.es5.0中 预编译过程 this不再指向window 指向空
+            传谁 this就指向谁(通过call) 在全局中· this仍指向window
+            es3.0中 重复参数和属性名不报错 es5.0中 重复参数和属性名报错
+        */
+
+        /*
+        es5.0启动 用 'use strict'
+        1.可以写在页面中逻辑最顶端
+        2.在局部声明 可以写在函数内部(推荐方式)
+        */
+        'use strict';
+        // function test() {
+        //     console.log(arguments.callee);
+                //es5.0中arguments没有callee方法 会报错
+        // }
+        // test();
+
+        function func() {
+            console.log(this);
+        }
+        func();
+    </script>
+</body>
+
+</html>

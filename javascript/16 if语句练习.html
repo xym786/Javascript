@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    prompt();函数
+    可弹出一个带文本框的提示窗 用户可以在文本框中输入一段内容
+    该函数需要一个字符串作为参数 该字符串会成为提示窗的提示文字
+    用户输入的内容作为返回值返回 可以定义一个变量来接收该内容
+
+    如果返回值为null 说明用户点击取消
+    alert confirm prompt三个提示窗 几个特点：
+    1.不能改变窗口样式
+    2.弹出弹窗时 JS停止运行
+    3.模态窗口
+    */
+
+    /*
+    var a = prompt('请输入内容：');
+    console.log(a);
+    */
+</script>
+<script>
+    /*
+    while(true) {
+        var score = prompt('请输入成绩:');
+        if(score <= 100 && score > 0 || score === '0') {
+            break;
+        }
+        alert('请重新输入');
+    }
+    if(score == 100) {
+        alert('满分！');
+    } else if(score >= 80) {
+        alert('优秀！');
+    } else if(score >= 60) {
+        alert('良好！');
+    } else {
+        alert('不及格！');
+    }
+    */
+</script>
+<script>
+    /*
+    var height = prompt('身高:');
+    if(isNaN(height)) {
+        alert('输入有误！');
+    } else {
+        var wealth = prompt('资产:');
+        if(isNaN(wealth)) {
+            alert('输入有误！');
+        } else {
+            var looks = prompt('颜值:');
+            if(isNaN(looks)) {
+                alert('输入有误！');
+            } else {
+                if(height > 180 && wealth > 1000 && looks > 500) {
+                    alert('一定嫁！');
+                } else if(height > 180 || wealth > 1000 || looks > 500) {
+                    alert('可以嫁！');
+                } else {
+                    alert('不嫁！');
+                }
+            }
+        }  
+    }
+    */
+</script>
+<script>
+    /*
+    var num1 = +prompt('第一个数字:'), num2 = +prompt('第二个数字:'), num3 = +prompt('第三个数字:');
+    if(num1 > num2) {
+        var temp = num1;
+        num1 = num2;
+        num2 = temp;
+    }
+    if(num1 > num3) {
+        var temp = num1;
+        num1 = num3;
+        num3 = temp;
+    }
+    if(num2 > num3) {
+        var temp = num2;
+        num2 = num3;
+        num3 = temp;
+    }
+    console.log(num1, num2, num3);
+    */
+</script>
+<script>
+    /*
+    var num1 = +prompt('第一个数字:'), num2 = +prompt('第二个数字:'), num3 = +prompt('第三个数字:');
+    if(num1 < num2 && num1 < num3) {
+        if(num2 < num3) {
+            console.log(num1, num2, num3);
+        }else {
+            console.log(num1, num3, num2);
+        }
+    }else if(num2 < num3 && num2 < num1) {
+        if(num1 < num3) {
+            console.log(num2, num1, num3);
+        }else {
+            console.log(num2, num3, num1);
+        }
+    }else {
+        if(num1 < num2) {
+            console.log(num3, num1, num2);
+        }else {
+            console.log(num3, num2, num1);
+        }
+    }
+    */
+</script>
+</body>
+</html>

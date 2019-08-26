@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box1 {
+        left: 100px;
+        top: 100px;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-color: #f10245;
+    }
+    body {
+        width: 2000px;
+        height: 2000px;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        //获取box1
+        var box1 = document.getElementById('box1');
+        document.onmousemove = function(event) {
+        //box1的范围过小 导致盒子不能向上 向左移动 所以应该将onmousemove事件绑定给document
+            //解决IE8兼容性问题
+            event = event || window.event;
+            //获取鼠标坐标 clientX clientY 用于获取mouse在当前可见窗口的坐标 x、y值相对于可见窗口
+            var top = event.clientY;
+            var left = event.clientX;
+
+            /*var top = event.pageY;
+            var left = event.pageX;*/
+            /*
+            pageX pageY 可获得鼠标相对于页面的按钮
+            但这两个属性在IE8中不支持 如兼容IE8 不要使用
+            */
+
+            /*
+            为兼容IE8 要获取滚动条的滚动高度
+            谷歌认为浏览器的滚动条是body的 可以通过body.scrollTop来获取 现谷歌也可以用过html来获取滚动条的滚动距离
+            火狐等浏览器认为滚动条是html的
+            */
+            //处理兼容性 获取滚动条的滚动距离
+            var st = document.documentElement.scrollTop || document.body.scrollTop;
+            var sl = document.documentElement.scrollLeft || document.body.scrollLeft;
+
+            //设置box1偏移量
+            box1.style.left = left + sl + 'px';  //开启box1绝对定位 其中左边的量相对于整个页面 而右边的量相对于可视窗口 当页面出现滚动条时 会出现问题
+            box1.style.top = top + st + 'px';
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="box1" class="box1"></div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.toString = function() {
+        return 'Person[name = ' + this.name + ', age = ' + this.age + ']';
+    }
+    var person = new Person('susun', 18);
+    var result = person.toString();
+    console.log(result);
+
+    person2 = new Person('chelly', 16);
+    person3 = new Person('egoist', 20);
+    var arr = [person, person2, person3];
+
+    /*
+    arr.push();
+    arr.pop();
+    arr.unshift();
+    arr.shift();
+    */
+
+    var array = [1, 2, 3, 3, 4, 5, 2, 2, 2, 6, 7];
+    function fun(arr) {
+        for(var i = 0; i < arr.length; i++) {
+            for(var j = i + 1; j < arr.length; j++) {
+                if(arr[i] == arr[j]) {
+                    arr.splice(j, 1);
+                    j--;
+                }
+            }
+        }
+        return arr;
+    }
+    var result = fun(array);
+    console.log(result);
+
+    /*
+    function A() {
+
+    }
+    function B(a) {
+        this.a = a;
+    }
+    function C(a) {
+        if(a) {
+            this.a = a;
+        }
+    }
+    A.prototype.a = 1;
+    B.prototype.a = 1;
+    C.prototype.a = 1;
+    */
+</script>
+</body>
+</html>

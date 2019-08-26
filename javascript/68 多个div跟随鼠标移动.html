@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        document.onmousemove = function (event) {
+            var divs = document.querySelectorAll('div');
+            event = event || window.event;
+
+            divs[0].style.left = event.clientX + 'px';
+            divs[0].style.top = event.clientY + 'px';
+
+            //从后先前赋值 防止前面的位置值丢失
+            for (var i = divs.length - 1; i >= 1; i--) {
+                divs[i].style.left = divs[i - 1].offsetLeft + 'px';
+                divs[i].style.top = divs[i - 1].offsetTop + 'px';
+            }
+        };
+    </script>
+</body>
+
+</html>

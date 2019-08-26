@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //创建一个数组
+    var arr = ['su', 'susun', 'sun'];
+    //所谓遍历数组 就是将数组中的元素都取出
+    for(var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+    }
+</script>
+
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    var per = new Person('su', 18);
+    var per2 = new Person('susun', 8);
+    var per3 = new Person('sun', 28);
+    var per4 = new Person('chelly', 16);
+    var per5 = new Person('egoist', 38);
+    //将这些person放入一个数组中
+    arrPerson = [per, per2, per3, per4, per5];
+    function getAdult(arr) {    //arr是形参 要提取信息的数组
+        newArr = [];    //创建新数组
+        for(var i = 0; i < arr.length; i++) {   //遍历arr 获取arr中person对象
+            if(arr[i].age >= 18) {  //判断person对象的age属性是否大于等于18
+                newArr.push(arr[i]);    //大于等于18的放入新数组中
+                //newArr[newArr.length] = arr[i]; 
+            }
+        }
+        return newArr;  //将新数组返回
+    }
+    var result = getAdult(arrPerson); 
+    //输出经过筛选的新数组
+    console.log(result);
+</script>
+</body>
+</html>

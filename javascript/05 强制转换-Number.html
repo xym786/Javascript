@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    js中其他进制的数字：
+        其中十六进制以0x开头
+        八进制以0开头
+        二进制以0b开头 但不是所有浏览器都支持
+    */
+    var a = 0x12, b = 040, c = 0b1001;
+    console.log(a, b, c);
+</script>
+<script>
+    //'070'这种字符串 转换为数字型 有的浏览器会当作八进制 有的会当作十进制
+    var d = '070';
+    d = parseInt(d, 10);    
+    /*
+    想将d转换为十进制 可在parseInt()函数中传入第二个参数 指定进制
+    parseInt()函数接受字符串 并将字符串转换为整形
+    */
+    console.log(typeof d, d);
+    //转为整型
+    var e = '123abc';
+    e = parseInt(e);
+    console.log('e = ' + e);
+</script>
+<script>
+    //null转换为number 值为0 undefined转换为number 值为NaN
+    var a = null, b =undefined;
+    a = Number(a);
+    b = Number(b);
+    console.log(a, b);
+    //布尔值转换为number值 true为1 false为0
+    var result1 = Number(true);
+    var result2 = Number(false);
+    console.log(result1, result2);
+</script>
+</body>
+</html>

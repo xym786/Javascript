@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #ccc;
+    }
+    ul {
+        margin: 100px auto;
+        width: 400px;
+    }
+    ul li {
+        list-style: none;
+    }
+    ul li a {
+        width: 400px;
+        height: 50px;
+        line-height: 50px;
+        display: block;
+        text-align: center;
+        border: 1px solid pink;
+        border-radius: 10px;
+        color: #333;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: rgb(230, 142, 107);
+    }
+    ul li p {
+        width: 380px;
+        height: 0px;
+        padding: 0 10px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: #abf;
+        transition: all .3s linear;
+    }
+    ul li:first-child p:target {
+        height: 100px;
+    }
+    ul li:nth-child(2) p:target {
+        height: 100px;
+    }
+    ul li:nth-child(3) p:target {
+        height: 100px;
+    }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#p1">section1</a>
+            <p id="p1">section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1</p>
+        </li>
+        <li>
+            <a href="#p2">section2</a>
+            <p id="p2">section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1</p>
+        </li>
+        <li>
+            <a href="#p3">section3</a>
+            <p id="p3">section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1 section1</p>
+        </li>
+    </ul>
+<script>
+    var p = document.getElementsByTagName('p');
+    var a = document.getElementsByTagName('a');
+    for(let i = 0; i < p.length; i++) {
+        a[i].onmousedown = function() {
+            //a[i].style.backgroundColor = 'blue';
+            for(var j = 0; j < p.length; j++) {
+                a[j].style.backgroundColor = 'rgb(230, 142, 107)';
+                if(j == i) {
+                    a[j].style.backgroundColor = 'blue';
+                }
+            }
+        };
+    }
+</script>
+</body>
+</html>

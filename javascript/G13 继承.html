@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        1.传统形式：原型链 继承了过多没用的属性
+        2.借用构造函数：不能继承借用构造函数的原型
+            每次构造函数都要多走一个函数
+        3.共享原型：不能随便修改自己的原型
+        4.圣杯模式
+        */
+
+        //共享原型
+        function inherit(Target, Origin) {
+            Target.prototype = Origin.prototype;
+            //使两个函数的原型相等
+        }
+
+ 
+        //圣杯模式
+        function F() { }
+        function Father() { }
+        Father.prototype = {
+            name: 'su'
+        }
+        var father = new Father();
+
+        function Son() { }
+
+        function extend(Target, Origin) {
+            F.prototype = Origin.prototype;
+            //上下语句交换位置 函数失效
+            Target.prototype = new F();
+            Target.prototype.constructor = Target; //将构造器指向Target
+            Target.prototype.uber = Origin.prototype; //可以判断继承自哪个原型
+        }
+        extend(Son, Father);
+
+        var son = new Son();
+        var son1 = new Son();
+        console.log(son.name);
+
+        son.__proto__.sayName = function () {
+            console.log(this.name);
+        }
+        son.sayName();
+        son1.sayName();
+        /*
+        这样通过Son创建的对象 可以继承Father的属性
+        并且通过修改F.prototype 可以使Son的对象有自己特有的属性
+        且不对Father创建的对象产生影响
+        */
+        //father.sayName();
+    </script>
+</body>
+
+</html>

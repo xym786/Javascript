@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box1 {
+        top: 10px;
+        margin-top: 10px;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        padding: 10px;
+        border: 10px solid red;
+        background-color: #fba;
+    }
+    #box2 {
+        width: 100%;    
+        height: 240px;
+        position: relative;
+        background-color: #ccc;
+    }
+    #box3 {
+        width: 150px;
+        height: 150px;
+        overflow: auto;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        var box1 = document.getElementById('box1');
+        var btn01 = document.getElementById('btn01');
+        btn01.onclick = function() {
+            /*
+            1.clientWidth和clientHeight
+            这两种属性可以获取元素的可见宽度和可见高度
+            这些属性得到的返回值都是不带有单位(px)的 都返回一个数字 可直接进行计算
+            会获取元素的高度和宽度 包括内容区和内边距
+            这些元素都是只读的 不能做修改
+            */
+            alert('clientHeight = ' + box3.clientHeight); //加了overflow的元素才有效果 其内部的子元素输出原高度
+
+            /*
+            2.offsetWidth和offsetHeight
+            获取元素整个的宽度和高度 包括内容区 内边距和边框
+            */
+            alert('offsetWidth = ' + box1.offsetWidth); //不可见部分也包括进去
+
+            /*
+            3.offsetParent可用来获取当前元素的定位父元素
+            会获取到离当前元素最近的开启定位的祖先元素
+            如果所有元素未开启定位 则返回body
+            */
+            alert('offsetParent = ' + box1.offsetParent.innerHTML);
+
+            /*
+            4.offsetLeft和offsetTop
+            当前元素相对于其定位父元素的水平/垂直偏移量 包括子元素的margin top left
+            */
+            alert('offsetTop = ' + box1.offsetTop);
+
+            /*
+            5.scrollHeight和scrollWidth
+            可以获取元素整个滚动区域的高度和宽度
+            */
+            alert('scrollHeight = ' + box3.scrollHeight); //加了overflow的元素才有效果 其内部的子元素输出原高度
+
+            /*
+            6.scrollLeft和scrollTop可以获取滚动条水平/垂直滚动的距离
+            当scrollHeight - scrollTop == clientHeight时 说明垂直滚动条已经到底了
+            当scrollWidth - scrollLeft == clientWidth时 说明水平滚动条已经到底了
+            */
+            alert('scrollLeft = ' + box3.scrollLeft);
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="box3">
+        <div id="box2">
+            <div id="box1"></div>
+        </div>
+    </div>
+    <br />
+    <button id="btn01">click</button>
+</body>
+</html>

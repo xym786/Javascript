@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  https://www.w3.org:443/TR/html5/browsers.html#the-window-object
+        //location.href：路径的全部信息
+
+        // 协议(protocol)：https/http(超文本传输协议)
+        // 主机名(host)： 标识服务器地址(域名/IP)  DNS ===> 域名转换为IP
+        // 端口(port)：标识一台终端(电脑、手机、电饭锅、热水器)上的一个网络应用程序
+        // 路径(path)：从第三个/开始，到?或者#之前结束。第三个/，称为根路径
+        // 哈希地址(Hash): #及以后的内容(hash地址并不发给服务器)
+        // search: ?及后面内容
+        console.log(location.protocol);
+        console.log(location.hostname);
+        console.log(location.port);
+        console.log(location.pathname);
+        console.log(location.hash);
+        console.log(location.search);
+    </script>
+</body>
+
+</html>

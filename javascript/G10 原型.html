@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person() {}
+        function Car() {}
+        Car.prototype = {
+            constructor: Person
+            /*
+            构造器 默认指向Car() 为了让Car()构建出的所有函数都能找到自己是通过谁创建的
+            也0可以手动修改构造器
+            */
+        }
+        var car = new Car();
+        //console.log(car.constructor);
+
+        Person.prototype.name = 'suuny';
+        function Person() {}
+        var person = new Person();
+        Person.prototype.name = 'cherry';
+        // console.log(person.name);
+        /*
+        由于所有的实例对象共享同一个prototype对象 那么从外界看来
+        prototype好像是实例对象的原型 而实例对象好像继承了prototype对象一样
+        */
+        Person.prototype.name = 'suuny';
+        function Person() {
+            //var this = {__proto__: Person.prototype} 作普通函数调用时无作用 作构造函数调用时生效
+        }
+        var person = new Person(); //此时person.__proto__已经指向name: 'sunny'
+        Person.prototype = { //改变Person.prototype指向新地址 但Person.__proto__仍指向name: 'sunny'
+            name: 'cherry'
+        }
+        console.log(person.name);
+    </script>
+</body>
+
+</html>

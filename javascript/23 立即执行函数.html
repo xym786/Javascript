@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //函数定义完之后 立即被调用 往往只执行一次
+    (function() {
+        //用()表示一个整体
+        alert('hello');
+    })();
+    //可传参数
+    (function(a, b) {
+        alert(a + b);
+    })(1, 2);
+</script>
+</body>
+</html>

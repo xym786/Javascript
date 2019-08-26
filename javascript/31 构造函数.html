@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    使用工厂方法创建的对象 使用的构造函数都是Object
+    创建的对象都是object这个类型 无法区分不同类型的对象
+    如果要创建一个person对象 可专门创建一个构造函数来创建此对象
+    不同的是构造函数首字母要大写
+    构造函数和普通函数的不同
+    1.普通函数直接调用
+    2.构造函数通过new关键字调用
+    */
+
+    //创建构造函数Person
+    function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+    //作为普通函数调用时
+    var obj = Person('chelly', 16, 'female');
+    console.log(obj);
+    //作为构造函数调用时
+    var obj1 = new Person('su', 18, 'male');
+    console.log(obj1);
+
+    //创建构造函数Dog
+    function Dog(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+    var obj2 = new Dog('kit', 8, 'female');
+    console.log(obj2);
+
+    /*
+    构造函数的执行流程
+    1.立即创建一个新的对象
+    2.将新建的对象作为函数的this 在构造函数中 可用this引用对象
+    3.执行函数中的代码 逐行执行
+    4.将新建对象作为返回值返回
+    */
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #ccc;
+        }
+
+        .clock {
+            margin: 80px auto;
+            width: 500px;
+            height: 500px;
+            position: relative;
+            border-radius: 50%;
+            background-color: #fff;
+            transform-style: preserve-3d;
+            box-shadow: 0px 0px 100px skyblue;
+        }
+
+        .clock ul li {
+            top: 50%;
+            left: 50%;
+            margin-left: -3px;
+            margin-top: -15px;
+            width: 6px;
+            height: 30px;
+            position: absolute;
+            background-color: #000;
+            list-style: none;
+        }
+
+        .clock ul li:after {
+            top: 28px;
+            left: -6px;
+            position: absolute;
+            content: '12';
+            font-size: 26px;
+        }
+
+        .clock ul li:nth-child(2):after {
+            content: '1';
+        }
+
+        .clock ul li:nth-child(3):after {
+            content: '2';
+        }
+
+        .clock ul li:nth-child(4):after {
+            content: '3';
+        }
+
+        .clock ul li:nth-child(5):after {
+            content: '4';
+        }
+
+        .clock ul li:nth-child(6):after {
+            content: '5';
+        }
+
+        .clock ul li:nth-child(7):after {
+            content: '6';
+        }
+
+        .clock ul li:nth-child(8):after {
+            content: '7';
+        }
+
+        .clock ul li:nth-child(9):after {
+            content: '8';
+        }
+
+        .clock ul li:nth-child(10):after {
+            content: '9';
+        }
+
+        .clock ul li:nth-child(11):after {
+            content: '10';
+        }
+
+        .clock ul li:nth-child(12):after {
+            content: '11';
+        }
+
+        #hourPointer,
+        #minPointer,
+        #secPointer {
+            top: 50%;
+            left: 50%;
+            margin-left: -6px;
+            margin-top: -166px;
+            width: 12px;
+            height: 166px;
+            position: absolute;
+            background-color: rgba(0, 0, 0, .8);
+            box-shadow: 0px 0px 10px #000;
+            transform-origin: 50% 100%;
+        }
+
+        #minPointer {
+            margin-left: -4px;
+            margin-top: -190px;
+            width: 8px;
+            height: 190px;
+            background-color: rgba(0, 0, 0, .8);
+        }
+
+        #secPointer {
+            margin-left: -3px;
+            margin-top: -210px;
+            width: 6px;
+            height: 250px;
+            background-color: rgba(255, 0, 0, .8);
+            transform-origin: 50% 210px;
+        }
+
+        #timeBox {
+            top: 68%;
+            left: 50%;
+            transform: translate(-50%);
+            width: 160px;
+            height: 60px;
+            position: absolute;
+            display: flex;
+            border-radius: 6px;
+            flex-direction: column;
+            background-color: pink;
+        }
+
+        #timeBox p {
+            flex: 1;
+            font-size: 24px;
+            color: rgb(39, 151, 114);
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            function getObj(obj) {
+                return document.getElementById(obj);
+            }
+            var hourPointer = getObj('hourPointer');
+            var minPointer = getObj('minPointer');
+            var secPointer = getObj('secPointer');
+
+            var lis = document.querySelectorAll('.clock ul li');
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].style.transform = 'rotate(' + 30 * i + 'deg) translateY(-236px)';
+            }
+
+            var timeBox_p1 = document.querySelectorAll('#timeBox p')[0];
+            var timeBox_p2 = document.querySelectorAll('#timeBox p')[1];
+            function update() {
+                time = new Date();
+                var hour = time.getHours();
+                var min = time.getMinutes();
+                min < 10 && (min = '0' + min);
+                var sec = time.getSeconds();
+                sec < 10 && (sec = '0' + sec);
+                var msec = time.getMilliseconds();
+                var mon = time.getMonth() + 1;
+                var date = time.getDate();
+                var day = time.getDay();
+                switch (day) {
+                    case 0:
+                        day = '日';
+                        break;
+                    case 1:
+                        day = '一';
+                        break;
+                    case 2:
+                        day = '二';
+                        break;
+                    case 3:
+                        day = '三';
+                        break;
+                    case 4:
+                        day = '四';
+                        break;
+                    case 5:
+                        day = '五';
+                        break;
+                    case 6:
+                        day = '六';
+                        break;
+                }
+
+                timeBox_p1.innerHTML = hour + ':' + min + ':' + sec;
+                timeBox_p2.innerHTML = mon + '月' + date + '日 星期' + day;
+
+                hourPointer.style.transform = 'rotate(' + (360 / 12 * hour + 30 / 60 * min) + 'deg) translateZ(13px)';
+                minPointer.style.transform = 'rotate(' + (360 / 60 * min + 6 / 60 * sec) + 'deg) translateZ(15px)';
+                secPointer.style.transform = 'rotate(' + (360 / 60 * sec + 6 / 1000 * msec) + 'deg) translateZ(17px)';
+            }
+            update();
+            setInterval(update, 10);
+        };
+    </script>
+</head>
+
+<body>
+    <div class="clock">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="hourPointer"></div>
+        <div id="minPointer"></div>
+        <div id="secPointer"></div>
+        <div id="timeBox">
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+</body>
+
+</html>

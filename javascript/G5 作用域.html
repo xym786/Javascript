@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            /*
+            运行期上下文：当函数执行前一刻 会创建一个执行期上下文对象
+            一个执行期上下文定义了一个函数执行的环境 每次执行时
+            函数对应的执行上下文都是独一无二的 所以多次调用一个函数
+            会导致创建多个执行上下文 函数执行完毕 他产生的执行上下文自动销毁
+    
+            [[scope]]:每个JS函数都是一个对象 对象中有些属性我们可以访问到
+            但有些不可以 这些属性仅供JS引擎存取 [[scope]]是其中之一
+            [[scope]]即我们所指的作用域 其中存储了运行期上下文集合
+    
+            作用域链：[[scope]]中存储的运行期上下文对象的集合 此集合是链式链接
+    
+            查找变量：从作用域链顶端依次向下查找
+    
+            每个函数都有自己的运行环境 当执行流进入一个函数时 函数的环境就会被推进下一个环境栈中
+            在函数运行之后 栈将其环境弹出 把控制权返回给之前的执行环境
+            ECMAScript程序中的执行流正是由这个方便的机制控制着
+            */
+
+            function a() {
+                function b() {
+                    var b = 234; //函数a运行时 导致b被定义
+                    console.log(a);
+                }
+                var a = 123;
+                b();
+            }
+            var globa = 100;
+            a();
+            /*
+            a刚被定义时 存储所在环境的执行期上下文a.[[scope]] → 0：GO {}:
+            a运行时 a.[[scope]] → 0：AO {}
+                                 1：GO {}
+            */
+
+            /*
+            [[scope]]           scope chain
+                                0
+                                1
+                                2
+            2:  GO {
+                this: window,
+                window: Object,
+                document: Object,
+                a: funa,
+                globa: 100
+            }
+            1: a AO {
+                this: window,
+                arguments: [],
+                b: funb,
+                a: 123
+            }
+            0: b AO {
+                this: window,
+                arguments: [],
+                b: 234
+            }
+            */
+        };
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

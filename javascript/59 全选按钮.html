@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box {
+        margin: 100px auto;
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span>全选练习</span>
+        全选<input type="checkbox" name="" id="checkedAllBox">
+        <br />
+        足球<input type="checkbox" name="items" id="" value="足球">
+        篮球<input type="checkbox" name="items" id="" value="篮球">
+        羽毛球<input type="checkbox" name="items" id="" value="羽毛球">
+        乒乓球<input type="checkbox" name="items" id="" value="乒乓球">
+        <br />
+        全选<input type="checkbox" name="" id="checkedAllBtn">
+        全不选<input type="checkbox" name="" id="checkedNoBtn">
+        反选<input type="checkbox" name="" id="checkedRevBtn">
+        <button name="sendBtn">提交</button>
+    </div>
+<script>
+    //bug
+
+    //1.全选按钮 点击后其余按钮也会被选中
+    var checkedAllBtn = document.getElementById('checkedAllBtn');
+    //为id为checkedAllBtn的按钮绑定一个单击响应函数
+    var items = document.getElementsByName('items');
+    checkedAllBtn.onclick = function() {
+        //通过遍历items 设置其余多选框变响应状态
+       for(var i = 0; i < items.length; i++) {
+           /*
+           通过多选框的checked属性 可以获取或设置多选框的选中状态
+           items[i].checked被选中时为true 没被选中时为false
+           */
+           items[i].checked = checkedAllBtn.checked;
+       }
+       //单击checkedAllBtn时 checkedAllBox也会被选中
+       checkedAllBox.checked = checkedAllBtn.checked;
+    };
+
+    //2.全不选按钮
+    var checkedNoBtn = document.getElementById('checkedNoBtn');
+    //为checkedNoBtn的按钮绑定一个单击响应函数
+    checkedNoBtn.onclick = function() {
+        for(var i = 0; i < items.length; i++) {
+            //将4个多选框设置为没选中的状态
+            items[i].checked = false;
+        }
+        //单击全不选按钮时 全选按钮会被取消选中
+        checkedAllBox.checked = false;
+    };
+
+    //3.反选按钮
+    var checkedRevBtn = document.getElementById('checkedRevBtn');
+    checkedRevBtn.onclick = function() {
+        checkedAllBox.checked = true;
+        for(var i = 0; i < items.length; i++) {
+            items[i].checked = !items[i].checked;
+            //反选时也要判断4个多选框是否都选中 都选中则checkedAllBox也要被选中
+            if(!items[i].checked) {
+                checkedAllBox.checked = false;
+            }
+        }
+    };
+
+    //4.提交按钮 点击按钮后 将选中的多选框弹出(弹出value属性值)
+    var sendBtn = document.getElementsByName('sendBtn')[0];
+    sendBtn.onclick = function() {
+        //遍历tiems
+        for(var i = 0; i < items.length; i++) {
+            //判断items[i]是否被选中 被选中则弹出value值
+            if(items[i].checked) {
+                alert(items[i].value);
+            }
+        }
+    };
+
+    //5.全选/全不选按钮 当他选中时 其余全选中 当他没被选中时 其余全取消
+    var checkedAllBox = document.getElementById('checkedAllBox');
+    checkedAllBox.onclick = function() {
+        for(var i = 0; i < items.length; i++) {
+            //在事件的响应函数中 响应函数给谁绑定的 this就是谁
+            items[i].checked = this.checked;
+        }
+    };
+
+    //6.如果4个多选框全选中 则checkedAllBox也选中 4个多选框中有没选中的checkedAllBox也不应该选中
+    for(var i = 0; i < items.length; i++) {
+        items[i].onclick = function() {
+            //在鼠标点击时 先设置checkedAllBox为选中状态
+            checkedAllBox.checked = true;
+            for(var j = 0; j < items.length; j++) {
+                if(!items[j].checked) {
+                    //一旦进入判断 则证明不是全选 checkedAllBox需要设置为false
+                    checkedAllBox.checked = false;
+                    break;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

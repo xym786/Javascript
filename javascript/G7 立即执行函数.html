@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        //针对初始化功能的函数 执行完毕后立即释放(JS中唯一执行后立即释放的方法)
+        (function abc() {
+            var a = 123;
+            var b = 234;
+            console.log(a + b); //357
+        }());
+        //console.log(abc); //立即执行函数执行完毕后 函数名会被忽略 故此报错
+
+        //可以有返回值 可定义一个变量来接收函数的返回值
+        var num = (function(a, b) {
+            return a + b;
+        }(1, 2)); //3(立即执行函数中可以传实参) 
+        console.log(num);
+
+        //只有函数表达式才能被执行符号执行
+
+        // function test() {
+        //     var a = 123;
+        //     console.log(a);
+        // }();  语法错误 执行符号对函数声明无效
+
+        /*
+        执行函数执行过的函数 自动忽略其函数名
+        在函数声明前 加上符号(+ - !) 有将其后半部分转化为表达式的趋势 所以执行符号可以生效
+        E || 函数声明    E && 函数声明 也可以使函数执行符号生效
+        */
+        var test = function() {
+            alert(1);
+        }();
+        console.log(test); //un
+
+        +function test1() {
+            console.log('a');
+        }();
+        //console.log(test1); //报错
+
+        //W3C推荐此方法 最外层()先被识别
+        (function() {
+            console.log('a');
+        }());
+
+        // function test2(a, b, c, d) {
+        //     console.log(a + b + c + d);
+        // }(1, 2, 3, 4);
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

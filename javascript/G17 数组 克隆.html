@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //数组简单克隆
+        // var obj = {
+        //     name: 'su',
+        //     age: 18,
+        //     gender: 'male'
+        // };
+        // var obj2 = {};
+        // function clone(origin, target) {
+        //     for (var prop in obj) {
+        //         target[prop] = origin[prop];
+        //     }
+        //     return target;
+        // }
+        // obj2 = clone(obj, obj2);
+        // console.log(obj2);
+
+        //对象深度克隆
+        function deepClone(origin, target) {
+            var target = target || {};
+            //如果没有目标文件 则给定一个空的目标文件
+            for (var prop in origin) {
+                if (origin.hasOwnProperty(prop)) {
+                    //克隆自己有的属性 排除掉继承得来的属性
+                    if (typeof (origin[prop]) === 'object' && origin[prop] !== 'null') {
+                        //判断要克隆的属性是否是引用数据类型 并且不能是null
+                        if (Object.prototype.toString.call(origin[prop]) == '[object Array]') {
+                            //判断要克隆的属性是否是数组类型
+                            target[prop] = [];
+                        } else {
+                            target[prop] = {};
+                        }
+                        deepClone(origin[prop], target[prop]);
+                        //继续克隆引用类型 属性中的内容
+                    } else {
+                        target[prop] = origin[prop];
+                    }
+                }
+            }
+            return target;
+        }
+
+        var obj = {
+            name: 'su',
+            age: 18,
+            sayHello: function () {
+                console.log(123);
+            }
+        };
+        var obj2 = {};
+
+        obj2 = deepClone(obj, obj2);
+
+        obj2.sayHello = function () {
+            console.log(456);
+        } //克隆出的对象外表一样 但其中的方法保存在不同的地址 修改其中一个方法的指向 不会影响另一个
+
+        console.log(obj2);
+
+        obj.sayHello(); //123
+        obj2.sayHello(); //456
+    </script>
+</body>
+
+</html>

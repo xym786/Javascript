@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //break可以跳出switch和循环语句 不在if中使用break和continue
+
+    /*
+    if(true) {
+        console.log('hello');
+        //报错
+        break;
+    }
+    */
+
+    /*
+    for(var i = 0; i < 5; i++) {
+        console.log(i);
+        if(i == 2) {
+            //此break是对for起作用的 而不是if
+            break;
+        }
+    }
+    */
+
+    /*
+    break会立即终止离他最近的循环
+    可为循环语句创建一个label来标识当前循环 label:循环语句;
+    使用break时 可在break后跟一个label 这样break会结束指定的循环 而不是最近的
+    */
+
+    /*
+    outer:
+    //将下面的循环命名为outer
+    for(var i = 0; i < 5; i++) {
+        console.log('@外层循环' + i)
+        for(var j = 0; j < 5; j++) {
+            console.log('内层循环' + j);
+            if(j == 2) {
+                break outer;
+                //结束名为outer的循环
+            }
+        }
+    }
+    */
+</script>
+<script>
+    /*
+    continue可跳出当次循环 默认对离他最近的循环有作用
+    不在if中使用break和continue
+    */
+
+    /*
+    测试程序性能 可以在程序开始前 设置计时器
+    console.log()可开启计时器 需要一个字符串作参数 这个字符串会作为计时器标识
+    console.time('test');开始计时器
+    console.timeEnd('test');终止计时器 同样需要计时器名作为参数
+    */
+    //求质数的另一种方式
+
+    /*
+    //测试程序性能
+    console.time('test');
+    outer:
+    for(var i = 2; i <= 100; i++) {
+        for(var j = 2; j < i; j++) {
+           if(i % j == 0) {
+               //进入此循环表示这个i不是一个质数 应跳过本次循环 进入下一次循环
+               continue outer;
+           } 
+        }
+        console.log(i);
+    }
+    console.timeEnd('test');
+    */
+    
+</script>
+</body>
+</html>

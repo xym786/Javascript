@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload = function() {
+        /*
+        BOM 浏览器对象模型 
+        BOM可以使我们通过JS操作浏览器 BOM中为我们提供一组对象用来完成对浏览器操作
+        BOM对象：1.Window对象 代表整个浏览器窗口 同时window也是网页中的全局对象
+            2.Navigator 代表当前浏览器信息 通过该对象识别不同的浏览器
+            3.Location 代表当前浏览器地址栏信息 可用来获取浏览器地址栏信息或操作浏览器跳转页面
+            4.History 代表浏览器历史记录 可通过该对象操作浏览器历史记录
+            由于隐私问题 该对象不能取得具体的历史记录 只能操作浏览器向前向后翻页(只在当次访问有效)
+            5.Screen 代表用户屏幕的信息 通过该对象可以获取用户显示器的相关应用
+            这些BOM对象在浏览器中都作为window对象的属性保存 可以通过window对象来使用 也可以直接使用
+        */
+
+        /*
+        由于历史原因 Navigator对象中大部分属性已不能帮我们识别浏览器了 一般我们只用userAgent(用户代理)
+        来判断浏览器信息 userAgent是一个字符串 这个字符串中包含有用来描述浏览器信息的内容
+        不同的浏览器会有不同的userAgent
+        */
+        //alert(navigator.appName);
+
+        /*
+        判断浏览器版本 IE中将微软和IE相关标识都去除了 现在基本不通过userAgent判断浏览器了
+        如通过userAgent无法判断 还可以通过一些浏览器中的特有对象来判断浏览器信息 比如ActiveXObject IE11中无效
+        */
+        var ua = navigator.userAgent;
+        if(/firefox/i.test(ua)) {
+            alert('firefox');
+        }else if(/chrome/i.test(ua)) {
+            alert('chrome');
+        }else if(/msie/i.test(ua)) {
+            alert('IE');
+        }
+
+        /*if(window.ActiveXObject) {
+            alert('IE');
+        }*/
+        /*if('ActiveXObject' in window) { //判断ActiveXObject是否在window中
+            alert('IE');
+        }*/
+    };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

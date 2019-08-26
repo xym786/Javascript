@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .clearfix:after {
+            content: "";
+            height: 0;
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .btns button {
+            padding: 8px;
+            margin-top: 15px;
+            outline: none;
+        }
+        .btns button:nth-child(1) {
+            margin-top: 0px;
+        }
+        .box {
+            margin: 50px auto;
+            width: 400px;
+            background-color: #ccc;
+            border: 1px solid red;
+        }
+        .lis {
+            margin: 15px 0 0 15px;
+            padding: 8px;
+            width: 100px;
+            border: 1px solid #999;
+        }
+        .lis ul li {
+            list-style: none;
+        }
+        .lis input[type = text] {
+            outline: none;
+            width: 90px;
+        }
+        .btns {
+            margin: 15px 15px 15px 0;
+            padding: 8px;
+            width: 150px;
+            border: 1px solid #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="box clearfix">
+        <div class="lis fl">
+            <ul id="city">
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>广州</li>
+                <li>深圳</li>
+            </ul>
+            <br />
+            <ul id="phone">
+                <li>IOS</li>
+                <li id="android">android</li>
+                <li>apple</li>
+            </ul>
+            <br />
+            <input type="radio" name="gender" id="">男
+            <input type="radio" name="gender" id="">女
+            <br />
+            用户名：<input type="text" value="请输入用户名" name="username">
+        </div>
+        <div class="btns fr">
+            <button id="btn01">查找北京节点</button>
+            <br />
+            <button id="btn02">查找所有li节点</button>
+            <br />
+            <button id="btn03">查找所有name=gender的节点</button>
+            <br />
+            <button id="btn04">查找所有city下的所有li节点</button>
+            <br />
+            <button id="btn05">查找city的所有子节点</button>
+            <br />
+            <button id="btn06">查找phone的第一个子元素</button>
+            <br />
+            <button id="btn07">查找北京的父节点</button>
+            <br />
+            <button id="btn08">查找id为android的前一个兄弟节点</button>
+            <br />
+            <button id="btn09">获取username的value值</button>
+            <button id="btn10">获取bj的文本值</button>
+        </div>
+    </div>
+<script>
+    function func(btnStr, fun) {
+        var btnStr = document.getElementById(btnStr);
+        btnStr.onclick = fun;
+    };
+    func('btn01', function() {
+        var bj = document.getElementById('bj');
+        alert(bj.innerHTML);
+    });
+    func('btn02', function() {
+        var lis = document.getElementsByTagName('li');
+        alert(lis[0].innerHTML);
+    })
+    func('btn03', function() {
+        var gender = document.getElementsByName('gender');
+        alert(gender[0].name);
+    })
+    func('btn04', function() {
+        var city = document.getElementById('city');
+        var citys = city.getElementsByTagName('li');
+        alert(citys[0].innerHTML);
+    })
+    func('btn05', function() {
+        var city = document.getElementById('city');
+        var cns = city.childNodes;
+        alert(cns[0]);
+    });
+    func('btn06', function() {
+        var phone = document.getElementById('phone');
+        var fir = phone.firstElementChild;
+        alert(fir.innerHTML);
+    });
+    func('btn07', function() {
+        var bj = document.getElementById('bj');
+        var pn = bj.parentNode;
+        alert(pn);
+    });
+    func('btn08', function() {
+        var and = document.getElementById('android');
+        var pre = and.previousElementSibling;
+        alert(pre.innerHTML);
+    });
+    func('btn09', function() {
+        var um = document.getElementsByName('username')[0];
+        alert(um.value);
+    });
+    func('btn10', function() {
+        var bj = document.getElementById('bj');
+        alert(bj.firstChild.nodeValue);
+    });
+</script>
+</body>
+</html>

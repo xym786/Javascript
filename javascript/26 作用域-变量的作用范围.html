@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+    js中有两种作用域
+    1.全局作用域 直接编写在script标签中的js代码都在全局作用域
+    在页面打开时创建 在页面关闭时销毁
+    全局作用域中全局对象window 代表浏览器窗口 由浏览器创建 可直接使用
+    在全局作用域中 创建的变量都作为window对象的属性保存
+    */
+    var a = 10;
+    var b = 20;
+    console.log(window.a);
+    //创建的函数都作为window对象的方法保存
+    function fun() {
+        console.log('fun函数');
+    }
+    window.fun();
+    window.alert('hello');
+</script>
+</body>
+</html>

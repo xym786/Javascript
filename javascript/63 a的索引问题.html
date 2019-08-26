@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="http://www.baidu.com">btn1</a>
+    <a href="#">btn2</a>
+    <a href="#">btn3</a>
+    <p>123</p>
+<script>
+    var a = document.getElementsByTagName('a');
+    var p = document.getElementsByTagName('p')[0];
+    /*
+    for循环会在页面加载之后立即执行 而响应函数在点击超链接时才会执行
+    当响应函数执行时 for循环早已执行完毕
+    */
+    for(var i = 0; i < a.length; i++) {
+        alert('out:' + i);
+        a[i].onclick = function() { //单击响应函数绑定完成
+            alert('in:' + i);
+            //alert(a[i]);  //for循环执行完毕后 i == 3
+            p.innerHTML = '456';
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
